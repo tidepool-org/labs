@@ -1,0 +1,29 @@
+{
+  "name": "ab",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "ab",
+    "css",
+    "html",
+    "js"
+  ],
+  "dependencies": {
+    "jquery": "~1.8.0",
+    "underscore": "~1.4.4",
+    "d3": "~3.1.6",
+    "raphael": "~2.1.0",
+    "common": null,
+    "tipsy": null,
+    "jquery-ui": null
+  },
+  "_id": "ab@0.0.1",
+  "readme": "ERROR: No README.md file found!",
+  "description": "ERROR: No README.md file found!",
+  "repository": {
+    "type": "local",
+    "path": "."
+  }
+}

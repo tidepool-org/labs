@@ -1,0 +1,254 @@
+<!--
+== BSD2 LICENSE ==
+Copyright (c) 2014, Tidepool Project
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the associated License, which is identical to the BSD 2-Clause
+License as published by the Open Source Initiative at opensource.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the License for more details.
+
+You should have received a copy of the License along with this program; if
+not, you can obtain one from Tidepool Project at tidepool.org.
+== BSD2 LICENSE ==
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Sonar</title>
+
+  	<meta charset="utf-8">
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+
+    <link rel="stylesheet" type="text/css" href="css/lib/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/lib/ion.rangeSlider.css" />
+    <link rel="stylesheet" type="text/css" href="css/lib/ion.rangeSlider.skinNice.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/lib/tipsy.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+  </head>
+  <body>
+    <div id="app" class='login'><div class="app" data-reactid=".0"><div class="login" data-reactid=".0.3"><div class="container-nav-outer login-nav" data-reactid=".0.3.0"><div class="container-nav-inner nav-wrapper" data-reactid=".0.3.0.0"><ul class="nav nav-left" data-reactid=".0.3.0.0.0"><li data-reactid=".0.3.0.0.0.0"><a href="http://tidepool.org/" target="_blank" class="login-nav-tidepool-logo" data-reactid=".0.3.0.0.0.0.0"><img src="/img/tidepool-logo.png" alt="Tidepool" data-reactid=".0.3.0.0.0.0.0.0"></a></li></ul><ul class="nav nav-right" data-reactid=".0.3.0.0.1"></ul></div></div><div class="login-logo" data-reactid=".0.3.1"><img src="/img/blip_sonar_icon_2.png" alt="Blip" data-reactid=".0.3.1.0"></div><div class="container-small-outer login-form" data-reactid=".0.3.2"><div class="container-small-inner login-form-box" data-reactid=".0.3.2.0"><form class="simple-form" data-reactid=".0.3.2.0.0"><div class="simple-form-inputs" data-reactid=".0.3.2.0.0.0"><div class="input-group form-group" data-reactid=".0.3.2.0.0.0.$username"><div data-reactid=".0.3.2.0.0.0.$username.0"><label class="input-group-label" for="username" data-reactid=".0.3.2.0.0.0.$username.0.0">Email</label><input type="email" tabindex='0' class="input-group-control form-control" id="username" name="username" data-reactid=".0.3.2.0.0.0.$username.0.1"></div></div><div class="input-group form-group" data-reactid=".0.3.2.0.0.0.$password"><div data-reactid=".0.3.2.0.0.0.$password.0"><label class="input-group-label" for="password" data-reactid=".0.3.2.0.0.0.$password.0.0">Password</label><input type="password" class="input-group-control form-control" id="password" name="password" data-reactid=".0.3.2.0.0.0.$password.0.1"></div></div></div><div class="simple-form-action-group" data-reactid=".0.3.2.0.0.1"><button class="simple-form-submit btn btn-primary js-form-submit" data-reactid=".0.3.2.0.0.1.0">Log in</button></div></form></div></div></div></div></div>
+    <div id="app" class='careteam'><div class="app" data-reactid=".0">
+      <div class="container-nav-outer navbar" data-reactid=".0.1"><div class="container-nav-inner nav-wrapper" data-reactid=".0.1.0"><div class="grid" data-reactid=".0.1.0.0"><div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.0"><ul class="nav nav-left" data-reactid=".0.1.0.0.0.0"><li data-reactid=".0.1.0.0.0.0.0"><a href="#/" class="navbar-logo" data-reactid=".0.1.0.0.0.0.0.0"><img src="/img/logo-small.png" alt="Blip" data-reactid=".0.1.0.0.0.0.0.0.0"></a></li></ul></div><div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.1"></div><div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.2"><ul class="nav nav-right navbar-user js-navbar-user" data-reactid=".0.1.0.0.2.0"><li data-reactid=".0.1.0.0.2.0.0"><a href="#/profile" class="navbar-label-link js-navbar-profile-link" title="Account" data-reactid=".0.1.0.0.2.0.0.0"><div class="navbar-label navbar-label-right" data-reactid=".0.1.0.0.2.0.0.0.0"><span data-reactid=".0.1.0.0.2.0.0.0.0.0">Logged in as </span><span class="navbar-user-name" data-reactid=".0.1.0.0.2.0.0.0.0.1">Howard Look</span></div><div class="navbar-label-arrow-right" data-reactid=".0.1.0.0.2.0.0.0.1"></div></a></li><li data-reactid=".0.1.0.0.2.0.1"><a href="" class="navbar-user-icon" title="Logout" data-reactid=".0.1.0.0.2.0.1.0">
+      <img src='/img/logout.png'></a></li></ul></div></div></div></div>
+      <div class="patients js-patients-page" data-reactid=".0.3"><div class="container-box-outer patients-box-outer" data-reactid=".0.3.0"><div class="container-box-inner patients-box-inner" data-reactid=".0.3.0.0"><div class="patients-content" data-reactid=".0.3.0.0.0">
+    <div class="patients-section js-patients-user" data-reactid=".0.3.0.0.0.0">
+      <div class="patients-section-title" data-reactid=".0.3.0.0.0.0.0">YOUR CARE TEAM</div>
+      <ul class="people-list list-group" data-reactid=".0.3.0.0.0.0.1">
+      </ul>
+    </div>
+    <div class="patients-section js-patients-shared" data-reactid=".0.3.0.0.0.1">
+      <div class="patients-section-title" data-reactid=".0.3.0.0.0.1.0">CARE TEAMS YOU BELONG TO</div>
+      <ul class="people-list list-group" data-reactid=".0.3.0.0.0.1.1">
+      </ul>
+    </div></div></div></div></div></div></div>
+
+    <div class='main'>
+      <div class="container-nav-outer navbar" data-reactid=".0.1">
+        <div class="container-nav-inner nav-wrapper" data-reactid=".0.1.0">
+          <div class="grid" data-reactid=".0.1.0.0">
+            <div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.0">
+              <ul class="nav nav-left" data-reactid=".0.1.0.0.0.0">
+                <li data-reactid=".0.1.0.0.0.0.0">
+                  <a href="#/" class="navbar-logo" data-reactid=".0.1.0.0.0.0.0.0">
+                    <img src="/img/logo-small.png" alt="Blip" data-reactid=".0.1.0.0.0.0.0.0.0">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.1">
+              <div class="navbar-patient js-navbar-patient" data-reactid=".0.1.0.0.1.0">
+                <div class="navbar-patient-name" data-reactid=".0.1.0.0.1.0.0">Brandon Arbiter</div>
+                <div class="navbar-patient-links" data-reactid=".0.1.0.0.1.0.1">
+                  <a href="#/patients/9453478b16" data-reactid=".0.1.0.0.1.0.1.0">
+                    <span data-reactid=".0.1.0.0.1.0.1.0.1">View profile</span>
+                  </a>
+                  <a href="https://staging-uploads.tidepool.io?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3IiOiI5NDUzNDc4YjE2IiwiZXhwIjoxMzk3NDc1Nzk0NjYzLCJzdnIiOiJubyJ9.SMAy7BK6q_QLMtvwbE954xs1LWQgZiry6KmaRyUHDGs" target="_blank" data-reactid=".0.1.0.0.1.0.1.1">
+                    <span data-reactid=".0.1.0.0.1.0.1.1.1"> Upload data</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item one-whole large-one-third" data-reactid=".0.1.0.0.2">
+              <ul class="nav nav-right navbar-user js-navbar-user" data-reactid=".0.1.0.0.2.0">
+                <li data-reactid=".0.1.0.0.2.0.0">
+                  <a href="#/profile" class="navbar-label-link js-navbar-profile-link" title="Account" data-reactid=".0.1.0.0.2.0.0.0">
+                    <div class="navbar-label navbar-label-right" data-reactid=".0.1.0.0.2.0.0.0.0">
+                      <span data-reactid=".0.1.0.0.2.0.0.0.0.0">Logged in as </span>
+                      <span class="navbar-user-name" data-reactid=".0.1.0.0.2.0.0.0.0.1">Howard Look</span>
+                    </div>
+                    <div class="navbar-label-arrow-right" data-reactid=".0.1.0.0.2.0.0.0.1"></div>
+                  </a>
+                </li>
+                <li data-reactid=".0.1.0.0.2.0.1">
+                  <a href="" class="navbar-user-icon" title="Logout" data-reactid=".0.1.0.0.2.0.1.0">
+                    <img src='/img/logout.png'>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <header><div class='header_tab_search'>Search</div></header>
+      <div class='search'>
+        <div class='search_panel'>
+          <ul class='search_panel_sections'>
+            <li class='search_panel_sections_saved'>
+              <div class='search_panel_sections_header arrow_opened'>Saved Searches</div>
+              <div class='search_panel_sections_content'>
+                <ul>
+                  <li>
+                    <span class='search_panel_sections_saved_name'>Post Prandial</span>
+                    <span class='search_panel_sections_saved_spark'>Joslin Diabetes Center</span>
+                    <div class='clear'></div>
+                  </li>
+                  <li>
+                    <span class='search_panel_sections_saved_name'>Basal : Bolus ratios</span>
+                    <span class='search_panel_sections_saved_spark'>Madison Clinic</span>
+                    <div class='clear'></div>
+                  </li>
+                  <li>
+                    <span class='search_panel_sections_saved_name'>Menstrual Cycle</span>
+                    <span class='search_panel_sections_saved_spark'>Stanford</span>
+                    <div class='clear'></div>
+                  </li>
+                  <li>
+                    <span class='search_panel_sections_saved_name'>Night Hypoglycemia</span>
+                    <span class='search_panel_sections_saved_spark'>Me</span>
+                    <div class='clear'></div>
+                  </li>
+                  <li>
+                    <span class='search_panel_sections_saved_name'>Morning Correction</span>
+                    <span class='search_panel_sections_saved_spark'>Me</span>
+                    <div class='clear'></div>
+                  </li>
+
+                </ul>
+              </div>
+            </li>
+            <li class='search_panel_sections_filter'>
+              <div class='search_panel_sections_header arrow_opened'>Search Criteria</div>
+              <div class='search_panel_sections_content'>
+                <ul>
+                  <li class='search_panel_sections_filter_criteria criteria_glucose active'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_opened'>Glucose mg/dL</div>
+                    <div class='search_panel_sections_filter_criteria_content'>
+                      <div class='search_panel_sections_filter_criteria_ranges'></div>
+                      <div class='search_panel_sections_filter_criteria_glucoseTrends'>
+                        <div class='search_panel_sections_filter_criteria_glucoseTrends_title'>Trending</div>
+                        <ul class='search_panel_sections_filter_criteria_glucoseTrends_arrow'>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_straight'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_up'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_down'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_straightUp'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_straightDown'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleUp'></li>
+                          <li class='search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleDown'></li>
+                        </ul>
+                        <div class='clear'></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_closed'>Basal</div>
+                    <div class='search_panel_sections_filter_criteria_content'></div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria criteria_bolus active'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_opened'>Bolus</div>
+                    <div class='search_panel_sections_filter_criteria_content'>
+                      <div class='search_panel_sections_filter_criteria_choices'>
+                        <ul>
+                          <!--<li value='none'>None</li>
+                          <li>Bolus Wizard</li>
+                          <li>Quick bolus</li>
+                          <li value='extended'>Extended</li>-->
+                          <li data='underride'>Underride</li>
+                          <li data='override'>Override</li>
+                          <li data='correction'>Correction</li>
+                          <li data='any'>Any Bolus</li>
+                        </ul>
+                        <div class='clear'></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria criteria_carbs active'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_opened'>Carbs</div>
+                    <div class='search_panel_sections_filter_criteria_content'>
+                      <div class='criteria_carbs_none'>None</div>
+                      <div class='search_panel_sections_filter_criteria_ranges'></div>
+                      <div class='clear'></div>
+                    </div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria criteria_timeOfDay active'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_opened'>Time of Day</div>
+                    <div class='search_panel_sections_filter_criteria_content'>
+                      <div class='search_panel_sections_filter_criteria_ranges'></div>
+                    </div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria criteria_days active'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_opened'>Days and Dates</div>
+                    <div class='search_panel_sections_filter_criteria_content'>
+                      <div class='search_panel_sections_filter_criteria_choices'>
+                        <ul>
+                          <li value='1'>M</li>
+                          <li value='2'>T</li>
+                          <li value='3'>W</li>
+                          <li value='4'>T</li>
+                          <li value='5'>F</li>
+                          <li value='6'>S</li>
+                          <li value='0'>S</li>
+                        </ul>
+                        <div class='clear'></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_closed'>Activity</div>
+                    <div class='search_panel_sections_filter_criteria_content'></div>
+                  </li>
+                  <li class='search_panel_sections_filter_criteria'>
+                    <div class='search_panel_sections_filter_criteria_header arrow_closed'>Notes</div>
+                    <div class='search_panel_sections_filter_criteria_content'></div>
+                  </li>
+                </ul>
+                <!--<div class='search_panel_sections_filter_save'><span class='search_panel_sections_filter_save_label'>Save this search</span><span class='search_panel_sections_filter_save_input'><input type='text' placeholder='Search Name'></span></div>-->
+                <div class='search_panel_sections_filter_search'>Search</div>
+                <div class='clear'></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class='search_results'>
+          <div class='search_results_summary_holder'>
+            <div class='search_results_summary'>Set some criteria and hit Search on the bottom left.</div>
+          </div>
+          <div class='clear'></div>
+          <ul class='search_results_items'>
+          </ul>
+        </div>
+        <div class='clear'></div>
+      </div>
+    </div>
+
+    <script src="js/vendor/underscore.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/tipsy.js"></script>
+    <script src="js/vendor/moment.js"></script>
+    <script src="js/vendor/d3.v3.min.js"></script>
+    <script src="js/vendor/ion.rangeSlider.min.js"></script>
+    
+    <script src="js/lib/pool.js"></script>  
+    <script src="js/lib/carb-filter.js"></script>  
+    <script src="js/lib/graph.js"></script>  
+    <script src="js/lib/range.js"></script>
+    <script src="js/app2.js"></script>  
+
+  </body>
+</html>

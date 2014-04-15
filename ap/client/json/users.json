@@ -1,0 +1,297 @@
+//"Audry Wrona","Kimberli Solar","Beata Flickinger","Letitia Monzo","Megan Vanbuskirk","Maye Calabro","Rachele Bernard","Halley Bitter","Marcela Engen","Jeanice Ruggerio","Jana Gooding","Terisa Traina","Kali Buckingham","Elizabet Harter","Mariann Loth"],
+var users = [
+ {
+ 	"name":"Mable Buckman",
+ 	"img": "/img/profiles/2.jpg",
+ 	"age": 23,
+ 	"id": 0,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Jolanda Walling",
+ 	"img": "/img/profiles/3.jpg",
+ 	"age": 23,
+ 	"id": 1,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Cara Tims",
+ 	"img": "/img/profiles/5.jpg",
+ 	"age": 23,
+ 	"id": 2,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Nevada Ahrens",
+ 	"img": "/img/profiles/6.jpg",
+ 	"age": 23,
+ 	"id": 3,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Leonarda Gandara",
+ 	"img": "/img/profiles/7.jpg",
+ 	"age": 23,
+ 	"id": 4,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Eugenia Loza",
+ 	"img": "/img/profiles/14.jpg",
+ 	"age": 23,
+ 	"id": 6,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Emmitt Tierney",
+ 	"img": "/img/profiles/0.jpg",
+ 	"age": 23,
+ 	"id": 7,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Vern Mahon",
+ 	"img": "/img/profiles/1.jpg",
+ 	"age": 23,
+ 	"id": 8,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Charis Robey",
+ 	"img": "/img/profiles/4.jpg",
+ 	"age": 23,
+ 	"id": 9,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Jonas Warfield",
+ 	"img": "/img/profiles/8.jpg",
+ 	"age": 23,
+ 	"id": 10,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ }, 
+ {
+ 	"name": "Derek Whicker",
+ 	"img": "/img/profiles/9.jpg",
+ 	"age": 23,
+ 	"id": 11,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Ray Dunkle",
+ 	"img": "/img/profiles/10.jpg",
+ 	"age": 23,
+ 	"id": 12,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Clark Ambrosio",
+ 	"img": "/img/profiles/12.jpg",
+ 	"age": 23,
+ 	"id": 13,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Delta Shuck",
+ 	"img": "/img/profiles/13.jpg",
+ 	"age": 23,
+ 	"id": 14,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Charity Leboeuf",
+ 	"img": "/img/profiles/15.jpg",
+ 	"age": 23,
+ 	"id": 15,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Gregory Titus",
+ 	"img": "/img/profiles/16.jpg",
+ 	"age": 23,
+ 	"id": 16,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Frederick Fagin",
+ 	"img": "/img/profiles/17.jpg",
+ 	"age": 23,
+ 	"id": 17,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Don Rester",
+ 	"img": "/img/profiles/18.jpg",
+ 	"age": 23,
+ 	"id": 18,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name":"Veronique Rodi",
+ 	"img": "/img/profiles/11.jpg",
+ 	"age": 23,
+ 	"id": 5,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Santiago Oberholt",
+ 	"img": "/img/profiles/19.jpg",
+ 	"age": 23,
+ 	"id": 19,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ },
+ {
+ 	"name": "Dexter Luera",
+ 	"img": "/img/profiles/20.jpg",
+ 	"age": 23,
+ 	"id": 20,
+ 	"hormone": {
+ 		"insulin": 10,
+ 		"glucagon": 10
+ 	},
+ 	"bg": {
+ 		"value": 124,
+ 		"unit": "mg/dl"
+ 	}
+ }
+];

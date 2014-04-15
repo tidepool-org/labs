@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Monitor Dashboard</title>  
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name='apple-mobile-web-app-status-bar-style' content='black' />  
+    <link rel="apple-touch-icon" href="img/logoGray.png"/>  
+
+  </head>
+  <body>
+    <link rel='stylesheet' href='/css/lib/reset.css'/>
+    <link rel='stylesheet' href='/css/lib/tipsy.css'/>
+
+    <link rel='stylesheet' href='/css/style2.css'/>
+    <link rel='stylesheet' href='/css/patient.css'/>
+    <link rel='stylesheet' href='/css/overlay.css'/>
+    <link rel='stylesheet' href='/css/usage.css'/>
+    <link rel='stylesheet' href='/css/help.css'/>
+    <link rel='stylesheet' href='/css/status.css'/>
+    <link rel='stylesheet' href='/css/svgLabel.css'/>
+    
+    <div class='portrait-chart'>
+    </div>
+    <div class='container'>
+        <div class='overlay'></div>
+        <div class="overlay-outer"><div class="overlay-content"></div></div>
+        
+        <div class='modal-background'>
+            <div class='modal-center-absolute'>
+                <div class='modal-content'>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <ul class='header-sections'>
+                <li class='header-logo'><img src='/img/logo.png'></li>
+                <li class='header-profile'><img src='/img/profiletop.png'></li>
+                <li class='header-label'><img src='/img/trialLabel.png'></li>
+            </ul>
+        </header>
+        <div id='main'>
+            <section class='patient-list-section'>
+                <ul class='patient-list'>
+                </ul>
+            </section>
+            <section class='patient-detail-hover'>
+            </section>
+            <div class='clear'></div>
+            <section class='usage'>
+                <p>Initial State:</p>
+                <br>
+                <p>You can set the initial state of the application through url query parameters. The supported query parameters are:</p>
+                <ul>
+                    <li><span class='usage-key'>users</span>: Number of users. Up to 10. Default 10</li>
+                    <li><span class='usage-key'>glucagon</span>: Glucagon state. True of False. Default False.</li>
+                    <li><span class='usage-key'>carbs</span>: Carb state. Index of carb state ['hidden', 'announcement', 'full']. Default 0 i.e. hidden.</li>
+                    <li><span class='usage-key'>speed</span>: Update speed. In milliseconds 100-10,000. Default 1000 ms.</li>
+                    <li><span class='usage-key'>fullscreen</span>: Set detail to profile view. Default false.</li>
+                </ul>
+
+                <p>example <a href='?users=4&glucagon=true&carbs=1'>/list?users=4&glucagon=true&
+                    carbs=1</a>.</p>
+                <br>
+                <p>Shortcuts:</p>
+                <ul>
+                    <li><span class='usage-key'>a</span>: Toggle alert.</li>
+                    <li><span class='usage-key'>f</span>: Toggle detail to profile view.</li>
+                    <li><span class='usage-key'>esc</span>: Close overlay.</li>
+                    <li><span class='usage-key'>g</span>: Toggle Glucagon state.</li>
+                    <li><span class='usage-key'>c</span>: Toggle Carb State: ['`hidden', 'announcement', 'full'].</li>
+                    <li><span class='usage-key'>h</span>: Toggle usage.</li>
+                    <li><span class='usage-key'>l</span>: Randomize signal pump and battery levels.</li>
+                    <li></li>
+                    <li><span class='usage-key'>1</span>: 100 ms update speed.</li>
+                    <li><span class='usage-key'>2</span>: 500 ms update speed.</li>
+                    <li><span class='usage-key'>3</span>: 1 s update speed.</li>
+                    <li><span class='usage-key'>4</span>: 3 s update speed.</li>
+                </ul>
+                <p>Tips:</p>
+                <ul>
+                    <li>User profile sections are dragabble.</li>
+                    <li>Resize the window horizontally up and down.</li>
+                    <li>(CMD+ -) and (CMD+ +) to zoom in and out to show how the site handles big screens.</li>
+                </ul>
+            </section>
+            <section class='help'>
+                <div class='help-text'><strong>Shortcuts.</strong> Press <span class='usage-key'>h.</span></div>
+            </section>
+        </div>
+    </div>
+    <script src='json/faces.json'></script>
+    <script src='json/names.json'></script>
+    <script src='json/users.json'></script>
+    <script src='json/dualHormoneReadings.json'></script>
+    
+    <script src='js/lib/jquery-1.9.1.js'></script>
+    <script src='js/lib/jquery-ui-1.10.3.custom.js'></script>
+    <script src='js/lib/jquery.rotate.js'></script>
+    <script src='js/lib/jquery.tipsy.js'></script>
+    <script src='js/lib/underscore.js'></script>
+    <script src="js/lib/d3.js"></script>
+    <script src="js/lib/common.js"></script>
+    <script src="js/lib/querystring.js"></script>
+    
+    <script src='js/ap/app.js'></script>
+    <script src='js/ap/overlay.js'></script>
+    <script src='js/ap/patient.js'></script>
+    <script src='js/ap/shortcuts.js'></script>
+    <script src='js/ap/data/patient.js'></script>
+    <script src='js/ap/data/cutReadings.js'></script>
+    <script src='js/ap/data/mealLevels.js'></script>
+    <script src='js/ap/data/stats.js'></script>
+    <script src='js/ap/getOffset.js'></script>
+    <script src='js/ap/graph.js'></script>
+    <script src='js/lib/orient.js'></script>
+
+    <script src="js/ss.js"></script>
+    <script src="js/meal.js"></script>
+    <script src="js/apSimulator.js"></script>
+  </body>
+</html>

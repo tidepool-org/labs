@@ -1,0 +1,9 @@
+{
+  "name": "common",
+  "version": "0.0.0",
+  "commit": "694984eccfaef05761a812df21c658df30c6c9f8",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gett/common"
+  }
+}

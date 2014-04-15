@@ -1,0 +1,14 @@
+refactor data into its own repo
+
+getReadings
+
+getUsers
+	getUser
+		getReadings
+		getCutReadings: offset, hours
+
+stats: readings
+
+graph: readings
+
+	

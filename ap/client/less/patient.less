@@ -1,0 +1,361 @@
+@import "colors";
+
+@patientItemHeight: 130px;
+@patientItemWidth: 300px;
+@patientItemMargin: 20px;
+@patientItemPadding: 12px;
+@patientBigItemHeight: ((@patientItemHeight + @patientItemMargin) * 2);
+@patientBigItemWidth: ((@patientItemWidth + @patientItemMargin) * 2);
+
+.patient {
+	border-radius: 5px;
+	cursor: nwse-resize;
+}
+.patient-small {
+	margin: 10px !important;
+	padding: 10px !important;
+}
+.patient-warning {
+	img {
+		height: 50px;
+		padding-left: 42px;
+		padding-right: 15px;
+	}
+	padding-right: 20px;
+	display: none;
+	float: left;
+}
+
+.patient-responsive-list (@columns: 2) {
+	@media only screen and (min-width: ((@patientItemWidth + @patientItemMargin) * @columns + (@patientItemMargin * @columns))) {
+		.header-sections {
+			width: ((@patientItemWidth + @patientItemMargin) * @columns + (@patientItemMargin * @columns));
+		}
+		.usage {
+			width: ((@patientItemWidth + @patientItemMargin) * @columns + (@patientItemMargin * @columns));
+		}
+		.patient-list-section {
+			width: ((@patientItemWidth + @patientItemMargin) * @columns + (@patientItemMargin * @columns));
+		}
+	}	
+}
+.ui-state-highlight {
+	background: @highlight !important;
+}
+
+.ui-state-highlight-big {
+	height: @patientBigItemHeight !important;
+	width: @patientBigItemWidth !important;
+	background: @highlight !important;
+}
+
+.patient-size-big {
+	height: @patientBigItemHeight;
+	width: @patientBigItemWidth;
+}
+
+.patient-size-small {
+	width: @patientItemWidth;
+	height: @patientItemHeight;
+}
+
+.patient-detail-hover {
+	height: @patientBigItemHeight;
+	width: @patientBigItemWidth;
+	position: absolute;
+	display: none;
+}
+
+.patient-img {
+	float: left;
+	height: 100px;
+	width: 100px;
+	border-radius: 76px;
+	margin: 15px 0px 0px 15px;
+}
+
+.patient-value-section {
+	margin-top: 35px;
+	font-size: 50px;
+	color: white;
+	font-family: helvetica;
+	float: left;
+	margin-left: 67px;
+}
+
+.patient-profile-name {
+	float: left;
+	padding: 15px 0px 5px 5px;
+	font-size: 18px;
+	max-width: 160px;
+	text-overflow: ellipsis;
+}
+
+.patient-profile-age {
+	float: left;
+	padding-left: 15px;
+}
+
+.header-sections {
+	width: (@patientItemWidth + @patientItemMargin);
+	margin: 0 auto;
+}
+
+.patient-list-section {
+	width: (@patientItemWidth + @patientItemMargin);
+	margin: 0 auto;
+
+  .patient-list {
+		> li {
+			margin: @patientItemMargin;
+			height: (@patientItemHeight - @patientItemPadding*2);
+			width: (@patientItemWidth - @patientItemPadding*2);
+			padding:  @patientItemPadding;
+			background: @patientBackground;
+			float: left;
+		}
+
+		> li:hover {
+			background-image: url('/img/patientBackground.png');
+			background-position: right 13px bottom 10px;
+			background-repeat: no-repeat;
+			background-size: 28px;
+		}
+	}
+}
+.patient-profile {
+	float: left;
+	width: (@patientItemWidth - @patientItemMargin);
+}
+
+
+.patient-value {
+	float: right;
+	margin-right: 25px; 
+	margin-left: -90px;
+	margin-top: 45px;
+}
+
+.patient-profile-value {
+	font-size: 50px;
+	width: 76px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.patient-profile-value-label {
+	padding-left: 10px;
+}
+
+.patient-graph-small {
+	display: none;
+
+	svg {
+		padding: 0px !important;
+		background: #EEEEEE;
+	}
+}
+
+.patient-graph-big {
+	padding: 5px 15px;
+	display: none;
+}
+
+.patient-profile-label {
+	font-size: 12px;
+	color: @color;	
+	text-align: left;
+}
+
+.patient-img-hover {
+	height: 50px !important;
+	width: 50px !important;
+}
+
+.patient-profile-name-hover {
+	width: 140px !important;
+	font-size: 13px !important;
+}
+
+.patient-profile-age-hover {
+	font-size: 20px !important;
+}
+
+.patient-value-hover {
+	margin-top: 10px !important;
+}
+
+/*new patient */
+.patient-header {
+}
+.patient-header-name {
+	float: left;
+	text-align: left;
+	width: 170px;
+	font-size: 17px;
+	color: @colorText;
+	text-decoration: capitalize;
+}
+
+.patient-header-status {
+	float: right;
+	padding: 2px;
+	padding-bottom: 5px;
+	cursor: auto;
+	> li {
+		float: left;
+	}
+}
+
+@iconPadding: 3px;
+@iconSize: 15px;
+
+.patient-header-status-icon {
+	width: @iconSize;
+	height: 12px;
+	
+	background-repeat: no-repeat;
+	background-size: @iconSize;
+	margin: 0 @iconPadding;	
+}
+.patient-header-status-icon-signal {
+}
+.patient-header-status-icon-pump {
+	background-size: 25px;
+	background-position: left 0px top 1px;
+	width: 25px;
+}
+.patient-header-status-icon-battery {
+	background-size: 25px;
+	background-position: left 0px top 1px;
+	width: 25px;
+}
+.patient-content {
+	padding: 10px 0;
+}
+.patient-content-image {
+	float: left;
+
+	img {
+		width: 75px;
+		height: 75px;
+		border-radius: 100px;
+	}
+}
+.patient-content-stats {
+	float: right;
+	padding-top: 8px;
+}
+.patient-content-hormone {
+	float: left;
+	padding-left: 10px;
+	padding-top: 5px;
+
+	.label {
+		font-weight: lighter;
+		padding: 5px;
+		font-size: 12px;
+		color: @colorTextLight;
+	}
+}
+.patient-content-hormone-insulin {
+	text-align: right;
+}
+.patient-content-hormone-glucagon {
+	text-align: right;
+}
+.patient-content-bg {
+	float: left;
+}
+.patient-content-bg-value {
+	font-size: 50px;
+	width: 80px;
+	font-weight: bold;
+	text-align: right;
+	padding-left: 11px;
+	padding-right: 5px;
+}
+.patient-content-bg-unit {
+	font-size: 15px;
+	text-align: right;
+	padding-right: 5px;
+}
+.patient-content-bg-trend {
+	float: left;
+
+	img {
+		width: 30px;
+		padding-left: 5px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+.patient-content-small {
+	padding: 5px;
+}
+.patient-content-image-small {
+	float: left;
+
+	img {
+		width: 60px;
+		height: 60px;
+		border-radius: 100px;
+	}
+}
+.patient-content-hormone-small {
+	font-size: 12px;
+}
+.patient-content-bg-value-small {
+	font-size: 35px;
+	width: 80px;
+	font-weight: bold;
+	text-align: right;
+	padding-left: 11px;
+	padding-right: 5px;
+}
+
+.patient-responsive-list(2);
+.patient-responsive-list(3);
+.patient-responsive-list(4);
+.patient-responsive-list(5);
+.patient-responsive-list(6);
+.patient-responsive-list(7);
+.patient-responsive-list(8);
+.patient-responsive-list(9);
+.patient-responsive-list(10);
+.patient-responsive-list(11);
+.patient-responsive-list(12);
+.patient-responsive-list(14);
+.patient-responsive-list(16);
+.patient-responsive-list(18);
+.patient-responsive-list(20);
+
+@media only screen and (max-device-width: 480px) {
+	.header-profile {
+		display: none;
+	}
+	.header-label {
+		margin: 0;
+		padding-top: 15px;
+		float: left;
+		padding-left: 10px;
+	}
+	.help {
+		display: none !important;
+	}
+	#main {
+		padding-top: 10px;
+	}
+	.patient-list-section {
+	  .patient-list {
+			> li {
+				margin: @patientItemMargin 10px;
+			}
+
+			> li:hover {
+				background: @patientBackground;
+			}
+		}
+	}
+}

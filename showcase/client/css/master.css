@@ -1,0 +1,64 @@
+body {
+  padding: 30px;
+  padding-bottom: 0;
+  background: #f7f7f8;
+}
+.main {
+  font-family: Gill Sans;
+  color: #979796;
+  font-size: 19px;
+  font-weight: lighter;
+}
+header {
+  padding: 40px 15px;
+}
+header img {
+  width: 250px;
+}
+h1 {
+  padding-top: 10px;
+  font-size: 22px;
+}
+footer {
+  padding: 0 20px;
+  clear: both;
+}
+footer img {
+  float: left;
+  padding: 0px 10px;
+  padding-bottom: 20px;
+  width: 60px;
+}
+.showcase .last {
+  padding-bottom: 0;
+}
+.showcase .odd p,
+.showcase .odd h2 {
+  text-align: left;
+}
+.showcase .odd img {
+  float: left;
+}
+.showcase li {
+  width: 700px;
+  padding: 20px;
+}
+.showcase img {
+  width: 500px;
+  float: right;
+}
+.showcase h2 {
+  text-align: right;
+  font-size: 19px;
+  padding-top: 100px;
+  font-weight: 300;
+  color: #2d214a;
+}
+.showcase p {
+  text-align: right;
+  padding: 15px 0;
+  font-size: 17px;
+}
+.showcase .clear {
+  clear: both;
+}

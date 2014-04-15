@@ -1,0 +1,9 @@
+<ul class='status-list'>
+	<% _.each(items, function(item) { %>
+		<li>
+			<img class='status-list-image' src=<%= item.img %>>
+			<span class='status-list-name'><%= item.name %></span>
+			<div class='clear'></div>
+		</li>
+	<% }); %>
+</ul>

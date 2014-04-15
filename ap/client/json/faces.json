@@ -1,0 +1,4 @@
+var faces = {
+	"male": ["/img/profiles/0.jpg","/img/profiles/1.jpg","/img/profiles/4.jpg","/img/profiles/8.jpg","/img/profiles/9.jpg","/img/profiles/10.jpg","/img/profiles/12.jpg","/img/profiles/13.jpg","/img/profiles/15.jpg","/img/profiles/16.jpg","/img/profiles/17.jpg","/img/profiles/18.jpg","/img/profiles/19.jpg","/img/profiles/20.jpg"],
+	"female": ["/img/profiles/2.jpg","/img/profiles/3.jpg","/img/profiles/5.jpg","/img/profiles/6.jpg","/img/profiles/7.jpg","/img/profiles/11.jpg","/img/profiles/14.jpg"]
+};

@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '.' ]
+2 info using npm@1.2.2
+3 info using node@v0.8.18
+4 verbose read json /Users/ian/code/package.json
+5 verbose read json /Users/ian/code/node_modules/=lifee/package.json
+6 verbose read json /Users/ian/code/node_modules/buffoon/package.json
+7 verbose read json /Users/ian/code/node_modules/canvas/package.json
+8 verbose read json /Users/ian/code/node_modules/common/package.json
+9 verbose read json /Users/ian/code/node_modules/lifee/package.json
+10 verbose read json /Users/ian/code/node_modules/nodeload/package.json
+11 verbose read json /Users/ian/code/node_modules/onecolor/package.json
+12 verbose read json /Users/ian/code/node_modules/palette/package.json
+13 verbose read json /Users/ian/code/node_modules/router/package.json
+14 verbose read json /Users/ian/code/node_modules/underscore/package.json
+15 verbose read json /Users/ian/code/node_modules/vida/package.json
+16 verbose read json /Users/ian/code/node_modules/xls/package.json
+17 verbose read json /Users/ian/code/package.json
+18 verbose cache add [ '.', null ]
+19 verbose cache add name=undefined spec="." args=[".",null]
+20 verbose parsed url { pathname: '.', path: '.', href: '.' }
+21 silly lockFile 3a52ce78- .
+22 verbose lock . /Users/ian/.npm/3a52ce78-.lock
+23 verbose read json package.json
+24 silly lockFile 3a52ce78- .
+25 error addLocal Could not install .
+26 error Error: ENOENT, open 'package.json'
+27 error If you need help, you may report this log at:
+27 error     <http://github.com/isaacs/npm/issues>
+27 error or email it to:
+27 error     <npm-@googlegroups.com>
+28 error System Darwin 12.3.0
+29 error command "node" "/usr/local/bin/npm" "install" "."
+30 error cwd /Users/ian/code/line/piddle-gap-indie/www2
+31 error node -v v0.8.18
+32 error npm -v 1.2.2
+33 error path package.json
+34 error code ENOENT
+35 error errno 34
+36 verbose exit [ 34, true ]

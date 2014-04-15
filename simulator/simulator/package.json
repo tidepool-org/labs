@@ -1,0 +1,11 @@
+{
+  "name": "ArtificialPancreasSimulator",
+  "version": "0.0.0",
+  "main": "test.js",
+  "repository": "",
+  "author": "",
+  "dependencies": {
+    "express": "3.x",
+    "underscore": "*"
+  }
+}

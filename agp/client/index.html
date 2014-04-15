@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Ambulatory Glucose Profile (AGP)</title>
+
+  	<meta charset="utf-8">
+    <meta name='apple-mobile-web-app-capable' content='yes'/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+
+    <link rel="stylesheet" type="text/css" href="css/lib/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/lib/tipsy.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+  </head>
+  <body>
+    <header></header>
+    <div id='container'>
+      <div class='stats'>
+        <div class='stats-handle'>Show Stats</div>
+        <table>
+          <tr class='stats-title'>
+            <td>Dangerously Low</td>
+            <td>Very Low</td>
+            <td>Low</td>
+            <td><span>Glucose Ranges</span><br> In Target Range</td>
+            <td>High</td>
+            <td>Very High</td>
+            <td>Dangerously High</td>
+          </tr>
+          <tr class='stats-description'>
+            <td>Below 50 <br>mg/dl</td>
+            <td>Below 60 <br>mg/dl</td>
+            <td>Below 70 <br>mg/dl</td>
+            <td>70 - 180 <br>mg/dl</td>
+            <td>Above 180 <br>mg/dl</td>
+            <td>Above 250 <br>mg/dl</td>
+            <td>Above 400 <br>mg/dl</td>
+          </tr>
+          <tr class='stats-values'>
+            <td class='dangerouslyLow'></td>
+            <td class='verLow'></td>
+            <td class='low'></td>
+            <td class='target'></td>
+            <td class='high'></td>
+            <td class='veryHigh'></td>
+            <td class='dangerouslyHigh'></td>
+          </tr>
+          <tr class='stats-recomendation'>
+            <td>0</td>
+            <td>0</td>
+            <td>&lt;4</td>
+            <td>&gt;90</td>
+            <td>&lt;6</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </table>
+      </div>
+      <div class='agp-chart'></div>
+      <div class='agp-carb-chart'></div>
+      <ul class='weekdays'>
+        <li>Monday</li>
+        <li>Tueday</li>
+        <li>Wednesday</li>
+        <li>Thursday</li>
+        <li>Friday</li>
+        <li>Saturday</li>
+        <li class='sunday'>Sunday</li>
+      </ul>
+      <div class='clear'></div>
+      <ul class='day-profile-chart'></ul>
+    </div>
+    <script src="js/vendor/underscore.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/d3.v3.min.js"></script>
+    <script src="js/vendor/tipsy.js"></script>
+    
+    <script src="json/cgm.json"></script>
+
+    <script src="js/lib/percentile.js"></script>
+    <script src="js/lib/percent.js"></script>
+    <script src="js/lib/agp.js"></script>  
+    <script src="js/lib/graph.js"></script>
+    <script src="js/lib/chunck.js"></script>
+    
+    <script src="js/app.js"></script>  
+  </body>
+</html>

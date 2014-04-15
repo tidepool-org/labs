@@ -1,0 +1,16 @@
+0. toggle form 1 to 2 hormones
+
+1. make header and rest of interface consitent with state.
+
+2. Dont show insulin and glucagon delivered at the same time. Spread the carbs.
+
+3. Toggle for show carb input.
+
+4. Profile. with IOB at GOB.
+
+Time box to this week.
+
+
+
+Profile View.
+

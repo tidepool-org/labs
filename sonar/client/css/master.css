@@ -1,0 +1,380 @@
+body {
+  padding: 30px;
+  background: #f7f7f8;
+  font-family: Gill Sans !important;
+}
+.main {
+  display: none;
+  width: 1020px;
+  margin: 0 auto;
+  font-family: Gill Sans;
+  color: #979796;
+  font-size: 19px;
+  font-weight: lighter;
+}
+.search {
+  background: #eeeeee;
+}
+.header_tab_search {
+  font-size: 19px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding-top: 15px;
+  float: right;
+  padding-right: 15px;
+}
+.header_tab_search:hover {
+  color: #0a9eb3;
+}
+.search {
+  padding: 5px 2px;
+}
+header {
+  background: url('/img/bar.png');
+  background-size: 1020px;
+  height: 45px;
+  width: 100%;
+}
+li {
+  list-style: none;
+}
+.search_panel,
+.search_results {
+  float: left;
+}
+.search_panel {
+  width: 400px;
+  border-right: 2px solid white;
+}
+.search_panel_sections > li {
+  border: 1px solid #e6e6e4;
+  margin: 5px;
+}
+.search_panel_sections > li > .search_panel_sections_content > ul {
+  padding: 10px;
+}
+.search_panel_sections_saved > .search_panel_sections_content > ul {
+  font-size: 16px;
+}
+.search_panel_sections_saved > .search_panel_sections_content > ul > li {
+  padding: 5px;
+  cursor: pointer;
+}
+.search_panel_sections_saved > .search_panel_sections_content > ul > li:hover {
+  color: white;
+  background: #0a9eb3;
+}
+.arrow_closed {
+  background: url('/img/closed.png');
+  color: #979796;
+}
+.arrow_opened {
+  background: url('/img/opened.png');
+  color: #0a9eb3;
+}
+.search_panel_sections_header {
+  padding: 10px 27px;
+  background-color: #f7f7f8;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position-y: 8px;
+  background-position-x: 5px;
+  cursor: pointer;
+}
+.search_panel_sections_header:hover {
+  color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_header {
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position-y: 2px;
+}
+.search_panel_sections_filter_criteria_header {
+  font-size: 19px;
+  cursor: pointer;
+  padding: 5px 20px;
+}
+.search_panel_sections_filter_criteria_header:hover {
+  color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria {
+  font-size: 12px;
+  margin: 0 10px;
+  padding: 10px 0;
+  border-bottom: 2px solid #e6e6e4;
+}
+.search_panel_sections_filter_criteria_ranges {
+  width: 350px;
+  height: 100px;
+  padding: 5px 0;
+}
+.search_panel_sections_filter_criteria_ranges_labels {
+  position: absolute;
+}
+.search_panel_sections_filter_criteria_ranges_labels > li {
+  float: left;
+  padding: 0px;
+  text-align: center;
+}
+.search_panel_sections_filter_criteria_ranges_labels > li > div {
+  padding: 10px 5px;
+  margin: 1px;
+  cursor: pointer;
+  background: #f7f7f8;
+  height: 40px;
+  font-size: 12px;
+}
+.search_panel_sections_filter_criteria_ranges_labels > li > div:hover {
+  color: #0a9eb3;
+}
+.range_holder {
+  position: relative;
+  top: 55px;
+}
+.search_panel_sections_filter_criteria_glucoseTrends {
+  background: #f7f7f8;
+  padding: 10px;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow {
+  float: left;
+  margin-left: 40px;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow > li {
+  float: left;
+  background-size: 23px;
+  width: 23px;
+  height: 15px;
+  margin: 0px 5px;
+  cursor: pointer;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_title {
+  font-size: 16px;
+  float: left;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straight:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_down:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_up:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straightDown:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straightUp:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleDown:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleUp:hover {
+  background-color: #0a9eb3;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straight {
+  background-image: url('/img/straight.png') !important;
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_down {
+  background-image: url('/img/down.png') !important;
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_up {
+  background-image: url('/img/up.png') !important;
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straightDown {
+  background-image: url('/img/straightDown.png') !important;
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_straightUp {
+  background-image: url('/img/straightUp.png') !important;
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleDown {
+  background-image: url('/img/doubleDown.png');
+  background-color: #979796;
+}
+.search_panel_sections_filter_criteria_glucoseTrends_arrow_doubleUp {
+  background-image: url('/img/doubleUp.png') !important;
+  background-color: #979796;
+}
+.clear {
+  clear: both;
+}
+.irs-slider {
+  top: -7px;
+}
+.irs-diapason,
+.irs-line {
+  top: 0px;
+}
+.irs-from,
+.irs-to,
+.irs-single {
+  background: #0a9eb3;
+}
+.irs-from,
+.irs-to,
+.irs-min,
+.irs-max,
+.irs-single {
+  top: 15px;
+}
+.search_panel_sections_filter_save,
+.search_panel_sections_filter_search {
+  float: right;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.search_panel_sections_filter_save:hover,
+.search_panel_sections_filter_search:hover {
+  color: #0a9eb3;
+}
+.criteria_timeOfDay,
+.criteria_carbs {
+  padding-bottom: 0px;
+}
+.criteria_carbs .criteria_carbs_none {
+  float: left;
+  width: 38px;
+  cursor: pointer;
+  background: #f7f7f8;
+  padding: 10px 4px;
+  margin: 6px 1px;
+  text-align: center;
+}
+.criteria_carbs .criteria_carbs_none:hover {
+  color: #0a9eb3;
+}
+.criteria_carbs .search_panel_sections_filter_criteria_ranges {
+  width: 300px;
+  float: left;
+}
+.search_panel_sections_filter_criteria_choices > ul > li {
+  background: #f7f7f8;
+  padding: 10px 14px;
+  margin: 4px;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+}
+.search_panel_sections_filter_criteria_choices > ul > li:hover {
+  background: #0a9eb3;
+  color: white;
+}
+.search_panel_sections_filter_save_input {
+  display: none;
+}
+.search_panel_sections_filter_save_input > input {
+  font-size: 12px;
+  font-family: Gill Sans;
+}
+.choice_selected {
+  color: white;
+  background: #0a9eb3 !important;
+}
+.choice_notSelected {
+  color: #979796;
+  background: #f7f7f8 !important;
+}
+.choice_selected_trend {
+  background-color: #0a9eb3 !important;
+}
+.choice_notSelected_trend {
+  background-color: #979796 !important;
+}
+.graph_bolus {
+  fill: #79ceee;
+  width: 5;
+}
+.bolus_smbg_label,
+.bolus_label,
+.pool_glucose_label {
+  fill: #979796;
+}
+.pool_glucose_label,
+.bolus_carbs_label {
+  font-size: 12px;
+}
+.graph_carbs,
+.bolus_carbs {
+  fill: #ffd282;
+}
+.bolus_highRange {
+  fill: #B99BEA;
+}
+.bolus_normalRange {
+  fill: #98CB64;
+}
+.bolus_lowRange {
+  fill: #FF8D79;
+}
+.search_results {
+  width: 590px;
+  background: white;
+  margin: 0 10px 10px 10px;
+  border: 2px solid #e6e6e4;
+}
+.search_results_summary {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px 0px;
+  text-align: right;
+}
+svg {
+  background: #eeeeee;
+  margin-top: 10px;
+}
+.pool_target_line {
+  stroke: white;
+  stroke-width: 2;
+}
+.pool_date {
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+.search_results_items {
+  height: 1080px;
+  overflow-y: scroll;
+}
+.search_results_items > li {
+  padding: 20px 10px;
+  border-bottom: 1px solid #e6e6e4;
+}
+.pool_date {
+  float: left;
+  padding-left: 5px;
+}
+.pool_close {
+  cursor: pointer;
+  float: right;
+  padding-right: 5px;
+}
+.pool_close:hover {
+  color: #0a9eb3;
+}
+.search_panel_sections_filter_search {
+  color: #79ceee !important;
+}
+.search_panel_sections_saved_spark {
+  float: right;
+  font-size: 12px;
+}
+.xAxis .domain {
+  display: none;
+}
+.xAxisText {
+  font-size: 12px;
+  fill: #979796;
+}
+.xAxisLabelBackground {
+  fill: white;
+}
+.search_results_summary_holder {
+  padding: 0px 10px;
+  border-bottom: 1px solid #e6e6e4;
+}

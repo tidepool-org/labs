@@ -1,0 +1,53 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Diacon Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+#include <stdio.h>
+#include "HovorkaModel.h"
+
+void printHovorkaModelParameters(const HovorkaModelParameters_t* pPar){
+
+printf("-----------------------------------------------------------------------\n");
+printf("Hovorka Model Parameters:\n");
+printf("-----------------------------------------------------------------------\n");
+printf("Body Mass                                [kg]       : BW   = %10.5g\n",pPar->BW);
+printf("Transfer rate                            [1/min]    : k12  = %10.5g\n",pPar->k12);
+printf("Deactivation rate                        [1/min]    : ka1  = %10.5g\n",pPar->ka1);
+printf("Deactivation rate                        [1/min]    : ka2  = %10.5g\n",pPar->ka2);
+printf("Deactivation rate                        [1/min]    : ka3  = %10.5g\n",pPar->ka3);
+printf("Transport insulin sensitivity            [L/mU]     : SI1  = %10.5g\n",pPar->SI1);
+printf("Disposal insulin sensitivity             [L/mU]     : SI2  = %10.5g\n",pPar->SI2);
+printf("EGP insulin sensitivity                  [L/mU]     : SI3  = %10.5g\n",pPar->SI3);
+//printf("Activation rate                          [1/min]    : kb1  = %10.5g\n",pPar->kb1);
+//printf("Activation rate                          [1/min]    : kb2  = %10.5g\n",pPar->kb2);
+//printf("Activation rate                          [1/min]    : kb3  = %10.5g\n",pPar->kb3);
+printf("Insulin elimination rate                 [1/min]    : ke   = %10.5g\n",pPar->ke);
+printf("CHO absorption time constant             [min]      : tauD = %10.5g\n",pPar->tauD);
+printf("Insulin absorption time constant         [min]      : tauS = %10.5g\n",pPar->tauS);
+printf("CHO utilization                          [-]        : AG   = %10.5g\n",pPar->AG);
+printf("Glucose distribution volume              [L]        : VG   = %10.5g\n",pPar->VG);
+printf("Insulin distribution volumen             [L]        : VI   = %10.5g\n",pPar->VI);
+printf("Insulin independent glucose consumption  [mmol/min] : F01  = %10.5g\n",pPar->F01);
+printf("Liver glucose production at zero insulin [mmol/min] : EGP0 = %10.5g\n",pPar->EGP0);
+printf("-----------------------------------------------------------------------\n");
+
+}

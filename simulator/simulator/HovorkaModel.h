@@ -1,0 +1,82 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Diacon Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+#ifndef HovorkaModel_h
+#define HovorkaModel_h
+
+typedef struct 
+{
+	double BW;	// Body mass [kg]
+//==============================================================================
+	double k12;	// Transfer rate [1/min]
+//==============================================================================
+	double ka1;	// Deactivation rate [1/min]
+	double ka2;	// Deactivation rate [1/min]
+	double ka3;	// Deactivation rate [1/min]
+
+	double SI1;	// Transport insulin sensitivity [L/mU]
+	double SI2;	// Disposal insulin sensitivity [L/mU]
+	double SI3; // EGP insulin sensitivity [L/mU]
+
+	double kb1;	// Activation rate [(L/mU)/min]
+	double kb2;	// Activation rate [(L/mU)/min]
+	double kb3;	// Activation rate [(L/mU)/min]
+//==============================================================================
+	double ke;	// Insulin elimination rate [1/min]
+//==============================================================================
+	double tauD;	// CHO absorption time constant [min]
+	double tauS;	// Insulin absorption time constant [min]
+//==============================================================================
+	double AG;	// CHO utilization [-]
+//==============================================================================
+	double VG;	// Glucose distribution volume [L]
+	double VI; 	// Insulin distribution volume [L]
+//==============================================================================
+	double F01;  	// Insulin independent glucose consumption [mmol/min]
+	double EGP0;	// Liver glucose production at zero insulin [mmol/min]
+//==============================================================================
+} HovorkaModelParameters_t;
+
+
+void HovorkaModelDefaultParameters(double BW, HovorkaModelParameters_t* pPar);
+void printHovorkaModelParameters(const HovorkaModelParameters_t* pPar);
+void HovorkaModel(
+	const double t, const double* x, 
+	const double* u, const double* d, const void* param, 
+	double* f);
+void HovorkaModelSimulation(
+			double* px, 
+			const int Nsim, const int Nsamples, 
+			const double* T, const double* U, const double* D,
+			const HovorkaModelParameters_t* pPar,
+			double *G, double *I,
+			double *pWork);
+void HovorkaModelSimulationStep(
+			const double tk, const double tkk, const int Nsamples,
+			const double* pxk, double* pxkk,
+			const double* pU, const double* pD,
+			const HovorkaModelParameters_t* pPar,
+			double *pG, double *pI,
+			double *pWork);
+
+#endif
