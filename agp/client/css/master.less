@@ -1,0 +1,197 @@
+/*
+== BSD2 LICENSE ==
+Copyright (c) 2014, Tidepool Project
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the associated License, which is identical to the BSD 2-Clause
+License as published by the Open Source Initiative at opensource.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the License for more details.
+
+You should have received a copy of the License along with this program; if
+not, you can obtain one from Tidepool Project at tidepool.org.
+== BSD2 LICENSE ==
+*/
+@dark: rgb(90, 90, 90);
+
+html {
+	padding-bottom: 50px;
+}
+
+header {
+	background: url('/img/blip.png');
+	width: 960px;
+	height: 140px;
+	margin: 0 auto;
+}
+
+body {
+	font-family: 'Gill Sans';
+	color: #808080;
+}
+
+h1 {
+	padding: 25px 0;
+	text-align: right
+}
+
+.stats {
+	padding-left: 35px;
+	padding-bottom: 15px;
+}
+
+.stats-handle {
+	cursor: pointer;
+	color: #8BA8DE;
+	text-align: right;
+	margin: 20px 0;
+}
+
+.stats-handle:hover {
+	color: #C5D3EF;
+}
+
+table {
+	display: none;
+	width: 750px;
+	margin: 20px auto;
+	text-align: center;
+	background: #F8F9FA;
+	border-radius: 3px;
+
+	tr {
+		padding: 2px;	
+	}
+	td {
+		padding: 5px;
+		border-left: 1px solid rgb(221, 221, 221);
+	}
+	td:first-child {
+		border-left: 0px;
+	}
+	span {
+		font-weight: bold;
+		color: @dark;
+	}
+}
+
+.stats-title {
+
+}
+
+.stats-description {
+
+}
+
+.stats-values {
+	font-size: 25px;
+	color: @dark;
+}
+
+.stats-recomendation {
+	font-size: 12px;
+}
+
+path:hover {
+}
+
+.chart-y-label,.chart-x-label,.chart-label-date {
+	font-size: 12px;
+	fill: #808080;
+}
+
+.chart-label-date {
+}
+
+#container {
+	width: 940px;
+	margin: 10px auto;
+}
+
+.chart-target-line {
+	stroke: white;
+	/*stroke: #F8B26E;*//* orange*/
+  stroke-width: 3;
+}
+
+.chart-target-line-noon {
+	stroke: #E2E2E2;
+	stroke-width: 2;
+}
+
+.chart-target-line-day {
+	stroke: #DCE4E7;
+  stroke-width: 2;
+}
+
+.chart-median-tipsy-inner {
+	background: red !important;
+}
+
+.agp-chart {
+	padding-bottom: 15px;
+}
+
+.day-profile-chart-plain {
+	background: #F2F4F6 !important;
+}
+
+.day-profile-chart-active {
+	background: #8B8B8B !important;
+}
+
+.day-profile-chart > li {
+	float: left;
+	padding: 3px 2px 0px;
+	margin: 4px;
+	background: #F2F4F6;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.day-profile-chart > li > svg {
+	border-radius: 4px;
+}
+.day-profile-chart > li:hover {
+	background: #A7A7A7;
+}
+.day-profile-chart {
+	padding-left: 21px;
+	padding-bottom: 50px;
+}
+
+.day-profile-chart-li-last {
+	margin-right: 0px !important;
+}
+
+.weekdays {
+	padding-left: 17px;
+}
+
+.weekdays > li {
+	float: left;
+	width: 118px;
+	text-align: center;
+	padding: 6px;
+}
+
+.sunday {
+	padding-right: 2px !important;
+}
+
+.clear {
+	clear: both;
+}
+
+.month {
+	position: absolute;
+	left: 60px;
+	top: 600px;
+}
+
+.space {
+	padding: 5px;
+	text-transform: capitalize;
+	text-align: center;
+}

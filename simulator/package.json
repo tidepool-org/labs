@@ -1,0 +1,11 @@
+{
+  "name": "simulator",
+  "version": "0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "underscore": "*"
+  }
+}

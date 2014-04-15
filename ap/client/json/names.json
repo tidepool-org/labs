@@ -1,0 +1,4 @@
+var names = {	
+	"female":["Mable Buckman","Jolanda Walling","Cara Tims","Nevada Ahrens","Leonarda Gandara","Veronique Rodi","Eugenia Loza","Lucia Salvato","Tania Woodall","Ronda Prosperie","Kiesha Broaden","Lida Steffensen","Loree Locicero","Tiffany Ordonez","Audry Wrona","Kimberli Solar","Beata Flickinger","Letitia Monzo","Megan Vanbuskirk","Maye Calabro","Rachele Bernard","Halley Bitter","Marcela Engen","Jeanice Ruggerio","Jana Gooding","Terisa Traina","Kali Buckingham","Elizabet Harter","Mariann Loth"],
+	"male":["Emmitt Tierney","Vern Mahon","Charis Robey","Jonas Warfield","Derek Whicker","Ray Dunkle","Clark Ambrosio","Delta Shuck","Charity Leboeuf","Gregory Titus","Frederick Fagin","Don Rester","Santiago Oberholt","Dexter Luera","Scott Goh","Charlie Koeller","Eric Berkley","Howard Arocha"]
+};

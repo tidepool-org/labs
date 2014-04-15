@@ -1,0 +1,114 @@
+/*
+== BSD2 LICENSE ==
+Copyright (c) 2014, Tidepool Project
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the associated License, which is identical to the BSD 2-Clause
+License as published by the Open Source Initiative at opensource.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the License for more details.
+
+You should have received a copy of the License along with this program; if
+not, you can obtain one from Tidepool Project at tidepool.org.
+== BSD2 LICENSE ==
+*/
+@pageBackground: #f7f7f8;
+@background: #eeeeee;
+@border: #e6e6e4;
+@lowlight: #f7f7f8;
+@selected: #0a9eb3;
+@text: #979796;
+@bolus: #79ceee;
+@bolusFood: #79ceee;
+@bolusCorrection: #79ceee;
+@bolusRecomended: #c8eafa;
+@carbs: #ffd282;
+@highRange: #B99BEA;
+@normalRange: #98CB64;
+@lowRange: #FF8D79;
+@tideblue: #6183fe;
+@tidedark: #2d214a;
+@standardSize: 19px;
+@mediumSize: 16px;
+@smallSize: 12px;
+
+
+body {
+	padding: 30px;
+	padding-bottom: 0;
+	background: @pageBackground;
+}
+
+.main {
+  font-family: Gill Sans;
+  color: @text;
+  font-size: @standardSize;
+	font-weight: lighter;
+}
+
+header {
+	padding: 40px 15px;
+	img {
+		width: 250px;
+	}
+}
+
+h1 {
+	padding-top: 10px;
+	font-size: 22px;
+}
+
+footer {
+	padding: 0 20px;
+	clear: both;
+
+	img {
+		float: left;
+		padding: 0px 10px;
+		padding-bottom: 20px;
+		width: 60px;
+	}
+}
+.showcase {
+	.last {
+		padding-bottom: 0;
+	}
+	.odd {
+		p, h2 {
+			text-align: left;
+		}
+		img {
+			float: left;
+		}
+	}
+
+	li {
+		width: 700px;
+		padding: 20px;
+		
+	}
+	img {
+		width: 500px;
+		float: right;
+	}
+
+	h2 {
+		text-align: right;
+		font-size: @standardSize;
+		padding-top: 100px;
+		font-weight: 300;
+		color: @tidedark;
+	}
+
+	p {
+		text-align: right;
+		padding: 15px 0;
+		font-size: 17px;
+	}
+
+	.clear {
+		clear: both;
+	}	
+}

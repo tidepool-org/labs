@@ -1,0 +1,89 @@
+@import "colors";
+
+body {
+	color: @color;
+	font-family: 'Gill Sans';
+}
+
+header {
+	height: 60px;
+	background: @headerBackground;
+}
+
+.header-logo {
+	float: left;
+	padding-left: 15px;
+
+	img {
+		height: 55px;
+	}
+}
+
+.header-label {
+	width: 125px;
+	margin: 0 auto;
+	padding-top: 45px;
+
+	img {
+		width: 125px;
+	}
+}
+
+.header-profile {
+	float: right;
+	margin-top: 10px;
+	padding-right: 15px;
+	img {
+		width: 300px;	
+	}
+	
+}
+
+.noscroll{
+  position:fixed;
+  overflow:hidden;
+}
+
+.header-bar-bottom {
+	height: 75px;
+	background: rgb(51, 51, 51);
+	width: 100%;
+	display: inline-block;
+	padding: 0px;
+}
+
+#main {
+	padding-top: 40px;
+}
+
+svg {
+	padding: 10px;
+	/*background: @patientBackground;*/
+	border-radius: 5px;
+}
+.color-range-high-background {
+	background: @colorHighRange !important;
+}
+.color-range-normal-background {
+	background: @colorNormalRange !important;
+}
+.color-range-low-background {
+	background: @colorLowRange !important;
+}
+
+.color-range-high-color {
+	color: @colorHighRange !important;
+}
+.color-range-normal-color {
+	color: @colorNormalRange !important;
+}
+.color-range-low-color {
+	color: @colorLowRange !important;
+}
+.color-alert-background {
+	background: @colorAlert !important;
+}
+
+.clear {
+	clear: both;
+}

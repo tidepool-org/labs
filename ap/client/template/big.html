@@ -1,0 +1,75 @@
+<div class='overlay-patient-header'>
+	<ul class='overlay-patient-header-insulin'>
+		<li class='overlay-patient-header-label'>Insulin Pump</li>
+		<li class='overlay-patient-header-signal'><img src='/img/signal/signal-on.png'></li>
+		<li class='overlay-patient-header-battery'><img src='/img/bat/bat5.png'></li>
+		<li class='overlay-patient-header-pump'><img src="/img/pump/pump7.png"></li>
+	</ul>
+	<ul class='overlay-patient-header-glucagon'>
+		<li class='overlay-patient-header-label'>Glucagon Pump</li>
+		<li class='overlay-patient-header-signal'><img src='/img/signal/signal-on.png'></li>
+		<li class='overlay-patient-header-battery'><img src='/img/bat/bat5.png'></li>
+		<li class='overlay-patient-header-pump'><img src="/img/pump/pump7.png"></li>
+	</ul>
+	<ul class='overlay-patient-header-cgm'>
+		<li class='overlay-patient-header-label'>CGM</li>
+		<li class='overlay-patient-header-signal'><img src='/img/signal/signal-on.png'></li>
+		<li class='overlay-patient-header-battery'><img src='/img/bat/bat5.png'></li>
+	</ul>
+	<ul class='overlay-patient-header-controller'>
+		<li class='overlay-patient-header-label'>Controller</li>
+		<li class='overlay-patient-header-signal'><img src='/img/signal/signal-on.png'></li>
+		<li class='overlay-patient-header-battery'><img src='/img/bat/bat5.png'></li>
+	</ul>
+	<div class='overlay-patient-header-close'>
+		<img src='/img/close.png'>
+	</div>
+	<div class='clear'></div>
+</div>
+<div class='overlay-patient-holder'>
+	<div>		
+		<section class='overlay-patient-profile'>
+			<div class='overlay-patient-profile-name patient-profile-name-hover'><%= name %></div>
+			<img class='overlay-patient-img' src='<%= img %>'>
+			<!--<div class='patient-profile-age patient-profile-age-hover'><%= age %> <span class='patient-profile-label'>years old</span></div>-->
+			<div class='clear'></div>
+		</section>
+		<div class='overlay-data'>
+			<div class='overlay-chart'>
+				<div class='overlay-chart-label'><span class='overlay-chart-label-insulin'>Insulin</span> <span class='overlay-chart-label-glucagon'>Glucagon</span> & <span class='overlay-chart-label-carbs'>Carbs</span></div>
+			</div>		
+			
+			<div class='overlay-stats'>
+				<div class='overlay-stats-bg-group'>
+					<div class='overlay-stats-bg'>
+						<div class='overlay-stats-bg-value'><%= bg.value %></div>
+						<div class='overlay-stats-bg-unit'><%= bg.unit %></div>
+					</div>
+					<div class='overlay-stats-bg-trend'><img src='/img/icon-double-arrow.png'></div>
+				</div>
+				<div class='overlay-stats-levels'></div>
+				<div class='overlay-warning'><img src='/img/warning.png'></div>
+				<div class='clear'></div>
+				<ul class='overlay-stats-bg-list'>
+					<li>Avg: <span class='overlay-right'><span class='overlay-stats-bg-list-value overlay-stats-average'>--</span> mg/dl</span></li>
+					<li>Range: <span class='overlay-right'><span class='overlay-stats-inRange'>--</span> %</span></li>
+					<li>Hyper: <span class='overlay-right'><span class='overlay-stats-inHyper'>--</span> %</span></li>
+					<li>Hypo: <span class='overlay-right'><span class='overlay-stats-inHypo'>--</span> %</span></li>
+				</ul>
+				<ul class='overlay-stats-hormone-list'>
+					<li>Insulin/day: <span class='overlay-right'><span class='overlay-stats-bg-list-value'>--</span> u</span></li>
+					<li>IOB: <span class='overlay-right'><span class='overlay-stats-bg-list-value'>--</span> u</span></li>
+					<li class='overlay-stats-glucagon'>Glucagon/day: <span class='overlay-right'><span class='overlay-stats-bg-list-value'>--</span> mg</span></li>
+					<li class='overlay-stats-glucagon'>GOB: <span class='overlay-right'><span class='overlay-stats-bg-list-value'>--</span> mg</span></li>
+				</ul>
+			</div>
+			<div class='clear'></div>
+		</div>
+		<!--<section class='overlay-patient-graph-big'></section>
+		<section class='patient-value patient-value-hover'>
+			<div class='patient-profile-value'><%= value %></div>
+			<div class='patient-profile-value-label patient-profile-label'>mmol/l</div>
+		</section>
+		-->
+	</div>
+</div>

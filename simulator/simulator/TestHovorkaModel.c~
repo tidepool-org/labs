@@ -1,0 +1,167 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Diacon Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#include "HovorkaModel.h"
+
+
+
+
+
+
+int main()
+{
+	printf("========================================================\n");
+	printf("                  Test Hovorka Model                    \n");
+	printf("========================================================\n");
+	printf("\n\n");
+
+	double BW = 70.0;
+	HovorkaModelParameters_t par;
+
+	HovorkaModelDefaultParameters(BW,&par);
+	printHovorkaModelParameters(&par);
+	
+	int nx = 10;
+	double uss = 6.68;
+	double dss = 0.00;
+	double xss[10];
+	double fss[10];
+	double t=0;
+
+	for(int i=0; i<nx; i++)
+		xss[i] = 0.0;
+
+	int ncycle = 100000000;
+	clock_t start, end;
+	double cpu_time_used;
+	
+	start = clock();
+	for(int i=0; i<ncycle; i++){
+		HovorkaModel(t,xss,&uss,&dss,&par,fss);
+	}		
+	end = clock();
+	cpu_time_used = ((double) (end-start))/CLOCKS_PER_SEC;
+	printf("CPU TIME              = %12.6e\n",cpu_time_used);
+	printf("CPU TIME PER FUN EVAL = %12.6e\n",cpu_time_used/(double) ncycle);
+	printf("FUN EVALS PER SEC     = %12.6e\n",(double) ncycle/cpu_time_used);
+
+	for(int i=0; i<nx; i++){
+		printf("x[%d] = %12.5g    f[%d] = %12.5g\n",i,xss[i],i,fss[i]);
+	}
+
+
+	//==========================================================================
+	// Simulation
+	int k,kk;
+	double dZERO = 0.0;
+	double x0[10];
+	double Ts = 5.0;
+	int Nsim = 12*24*7*52;		// 5 min samples, simulate a week
+	int Nsamples = 10;		// simulate with 30 sec intervals f
+	HovorkaModelParameters_t *pPar;
+	double *pWork;
+
+	double *pT;
+	double *pU;
+	double *pD;
+	double *pG;
+	double *pI;
+
+
+	pT = (double*) malloc((Nsim+1)*sizeof(double));
+	pU = (double*) malloc((Nsim+1)*sizeof(double));
+	pD = (double*) malloc((Nsim+1)*sizeof(double));
+	pG = (double*) malloc((Nsim+1)*sizeof(double));
+	pI = (double*) malloc((Nsim+1)*sizeof(double));
+
+	pWork = (double*) malloc(nx*sizeof(double));
+
+	for(k=0; k<nx; k++)
+		x0[k] = dZERO;
+
+
+	kk = 0;
+	pT[kk] = 0.0;
+	for(k=0; k<Nsim; k++){
+		pT[++kk] = pT[k] + Ts;
+	}
+
+	for(k=0; k<=Nsim; k++){
+		pU[k] = 6.68;
+	}
+
+	for(k=0; k<=Nsim; k++){
+		pD[k] = 0.0001;
+	}
+
+	pPar = &par;
+
+	start = clock();
+	for(int pp=0; pp<100; pp++){
+	HovorkaModelSimulation(
+			x0, 
+			Nsim, Nsamples, 
+			pT, pU, pD,
+			pPar,
+			pG, pI,
+			pWork);
+	}
+	end = clock();
+	cpu_time_used = ((double) (end-start))/CLOCKS_PER_SEC;
+	printf("CPU TIME              = %12.6e\n",cpu_time_used);
+
+
+
+/*
+	printf("------------------------------------------------------------------\n");
+	printf("     T        U        D    G      I\n");
+	printf("------------------------------------------------------------------\n");
+	for(k=0; k<= Nsim; k++){
+		printf("%8.2f %8.2f %8.4f %5.2f %5.2f\n",pT[k]/60,pU[k],pD[k],pG[k],pI[k]);
+	}
+	printf("------------------------------------------------------------------\n");
+
+
+	printf("========================================================\n");
+	printf("\n\n");
+*/
+	printf("CPU TIME              = %12.6e\n",cpu_time_used);
+
+
+	free(pT);
+	free(pU);
+	free(pD);
+	free(pG);
+	free(pI);
+	free(pWork);
+
+
+	return 0;
+}
+
+
+

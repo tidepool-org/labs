@@ -1,0 +1,31 @@
+<li class='patient'>
+	<section class='patient-header'>
+		<div class='patient-header-name'><%= name %></div>
+		<ul class='patient-header-status'>
+			<li title='signal' class='patient-header-status-icon patient-header-status-icon-signal'></li>
+			<li title='battery' class='patient-header-status-icon patient-header-status-icon-battery'></li>
+			<li title='pump' class='patient-header-status-icon patient-header-status-icon-pump'></li>
+			<div class='clear'></div>
+		</ul>
+		<div class='clear'></div>
+	</section>
+	<section class='patient-content'>
+		<div class='patient-content-image'><img src='<%= img %>'></div>
+		<div class='patient-content-stats'>
+			<div class='patient-content-hormone'>
+				<div class='patient-content-hormone-insulin'><span class='label'>IOB</span><span class='value'><%= hormone.insulin %></span></div>
+				<div class='patient-content-hormone-glucagon'><span class='label'>GOB</span><span class='value'><%= hormone.glucagon %></span></div>
+			</div>
+			<div class='patient-content-bg'>
+				<div class='patient-content-bg-value'><%= bg.value %></div>
+				<div class='patient-content-bg-unit'><%= bg.unit %></div>
+			</div>
+			<div class='patient-content-bg-trend'><img src='/img/icon-double-arrow.png'></div>
+			<div class='patient-warning'><img src='/img/warning.png'></div>
+			<div class='clear'></div>
+		</div>
+		<div class='clear'></div>
+	</section>
+	<section class='patient-graph-small'></section>
+	<section class='patient-graph-big'></section>
+</li>
