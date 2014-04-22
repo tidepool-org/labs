@@ -18,6 +18,14 @@ var onFilterUpdate = function() {
 	console.log('onFilterUpdate', arguments);
 };
 
+var singleRange = function(criteria, options) {
+	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range').ionRangeSlider(options);
+};
+
+var carbSingleRange = function(criteria, options) {
+	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range_carb').ionRangeSlider(options);
+};
+
 var range = function(criteria, settings, labels) {
 	settings = _.defaults(settings || {}, {
 		start: 0,

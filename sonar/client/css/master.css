@@ -1,3 +1,19 @@
+/*
+== BSD2 LICENSE ==
+Copyright (c) 2014, Tidepool Project
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the associated License, which is identical to the BSD 2-Clause
+License as published by the Open Source Initiative at opensource.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the License for more details.
+
+You should have received a copy of the License along with this program; if
+not, you can obtain one from Tidepool Project at tidepool.org.
+== BSD2 LICENSE ==
+*/
 body {
   padding: 30px;
   background: #f7f7f8;
@@ -377,4 +393,19 @@ svg {
 .search_results_summary_holder {
   padding: 0px 10px;
   border-bottom: 1px solid #e6e6e4;
+}
+.search_panel_sections_filter_criteria_singleRange_label {
+  padding: 10px 0 20px 0;
+  font-size: 16px;
+}
+.pagging {
+  display: none;
+}
+.pagging > div {
+  float: right;
+  padding: 10px;
+  color: #0a9eb3;
+  font-size: 16px;
+  display: none;
+  cursor: pointer;
 }

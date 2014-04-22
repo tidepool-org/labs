@@ -104,7 +104,7 @@ var basicFilter = {
 
 var filterOne = {
 	carbsAndGlucose: function(readings, options) {
-		var carbPools = filterOne.carbsOnly(readings, options.carbRange, options.days, options.timeOfDayRange);
+		var carbPools = filterOne.carbsOnly(readings, options.carbRange, options.days, options.timeOfDayRange, options.carbPeriod);
 
 		//console.log('carbsAndGlucose');
 		//console.log('carbPools', carbPools.readings, carbPools.length, options);
@@ -257,7 +257,7 @@ var filterOne = {
 		}
 		return pools;
 	},
-	carbsOnly: function(readings, range, days, timeOfDayRange) {
+	carbsOnly: function(readings, range, days, timeOfDayRange, carbPeriod) {
 		console.log(range,days)
 		var pools = [];
 		var pool = null;
@@ -271,8 +271,38 @@ var filterOne = {
 
 		for(var i in readings) {
 			var reading = readings[i];
+			var makePool = false;
 
-			if (reading.type == 'wizard' && reading.payload.carbInput >= range[0] && reading.payload.carbInput <= range[1]) {
+			if (carbPeriod == 1 && reading.type == 'wizard' && reading.payload.carbInput >= range[0] && reading.payload.carbInput <= range[1]) {
+				makePool = true;
+			}
+
+			if(carbPeriod > 1 && reading.type == 'wizard') {
+				var sum = reading.payload.carbInput;
+
+				for(var j = i; j < readings.length; j++) {
+					var carbPeriodReading = readings[j];
+
+					if (carbPeriodReading.date.getTime() - reading.date.getTime() > (carbPeriod*60*1000)) {
+						if(sum >= range[0] && sum <= range[1]) {
+							makePool = true;
+						}
+						break;
+					}
+
+					if (carbPeriodReading.type == 'wizard') {
+						sum += carbPeriodReading.payload.carbInput;
+
+						if(!(sum >= range[0] && sum <= range[1])) {
+							break;
+						};
+					}
+				}
+
+				console.log('carbPeriod', carbPeriod, 'makePool', makePool, 'sum', sum, 'range', range)
+			}
+
+			if(makePool) {
 				if(days && !_.contains(days, reading.date.getDay())) {
 					continue;	
 				}
