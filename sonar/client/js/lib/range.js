@@ -18,6 +18,7 @@ var onFilterUpdate = function() {
 	console.log('onFilterUpdate', arguments);
 };
 
+<<<<<<< HEAD
 var singleRange = function(criteria, options) {
 	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range').ionRangeSlider(options);
 };
@@ -26,6 +27,8 @@ var carbSingleRange = function(criteria, options) {
 	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range_carb').ionRangeSlider(options);
 };
 
+=======
+>>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 var range = function(criteria, settings, labels) {
 	settings = _.defaults(settings || {}, {
 		start: 0,

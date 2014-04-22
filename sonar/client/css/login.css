@@ -1653,7 +1653,8 @@ not, you can obtain one from Tidepool Project at tidepool.org.
 .login .patient-data-footer-right {
   text-align: right;
 }
-.careteam {
+.careteam,
+.main {
   display: none;
 }
 .careteam svg,

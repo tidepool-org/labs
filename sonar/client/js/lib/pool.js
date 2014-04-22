@@ -105,7 +105,6 @@ var basicFilter = {
 var filterOne = {
 	carbsAndGlucose: function(readings, options) {
 		var carbPools = filterOne.carbsOnly(readings, options.carbRange, options.days, options.timeOfDayRange, options.carbPeriod);
-
 		//console.log('carbsAndGlucose');
 		//console.log('carbPools', carbPools.readings, carbPools.length, options);
 
