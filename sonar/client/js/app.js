@@ -25,16 +25,11 @@ var clearWaiting = function() {
 };
 
 var drawLake = function(lake) {
-<<<<<<< HEAD
 	if(!lake) {
 		return;
 	}
 	var id = 'pool_' + lake.start.time;
 	var template = _.template("<li id='<%= id%>'><div class='pool_date'><%= start %></div><div class='clear'></div></li>");
-=======
-	var id = 'pool_' + lake.start.time;
-	var template = _.template("<li id='<%= id%>'><div class='pool_date'><%= start %></div><div class='pool_close'>x</div><div class='clear'></div></li>");
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 
 	$('.search_results_items').append(template({id: id, start: moment(lake.start.time).format('dddd MMMM Do YYYY h:mma')}));
 
@@ -45,7 +40,6 @@ var drawLake = function(lake) {
 	});
 };
 
-<<<<<<< HEAD
 var drawPage;
 var PageDrawer = function(lakes) {
 	var pageSize = 20;
@@ -102,8 +96,6 @@ var PageDrawer = function(lakes) {
 	}
 };
 
-=======
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 var search = function(readings, range) {
 	$('.search_results_summary').text('searching...');
 	$('.search_results_items').html('');
@@ -113,7 +105,6 @@ var search = function(readings, range) {
 		timeOfDayRange: sections.searchCriteria.filters.timeOfDay.selected() ? sections.searchCriteria.filters.timeOfDay.value() : null
 	};
 
-<<<<<<< HEAD
 	var glucoseOccurence = 3;
 
 	if (sections.searchCriteria.filters.glucose.selected()) {
@@ -132,14 +123,6 @@ var search = function(readings, range) {
 	} else if(!sections.searchCriteria.filters.carbs.selected() && sections.searchCriteria.filters.glucose.selected()) {
 		
 		lakes = filterOne.glucoseOnly(readings, sections.searchCriteria.filters.glucose.value(), glucoseOccurence, searchOptions.days, searchOptions.timeOfDayRange);	
-=======
-	if(sections.searchCriteria.filters.carbs.selected() && !sections.searchCriteria.filters.glucose.selected()) {	
-		lakes = filterOne.carbsOnly(readings, sections.searchCriteria.filters.carbs.value(), searchOptions.days, searchOptions.timeOfDayRange);	
-
-	} else if(!sections.searchCriteria.filters.carbs.selected() && sections.searchCriteria.filters.glucose.selected()) {
-		
-		lakes = filterOne.glucoseOnly(readings, sections.searchCriteria.filters.glucose.value(), 3, searchOptions.days, searchOptions.timeOfDayRange);	
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 
 	} else if(sections.searchCriteria.filters.carbs.selected() && sections.searchCriteria.filters.glucose.selected()) {
 		var options = {
@@ -147,12 +130,8 @@ var search = function(readings, range) {
 			timeOfDayRange: searchOptions.timeOfDayRange,
 			carbRange: sections.searchCriteria.filters.carbs.value(),
 			glucoseRange: sections.searchCriteria.filters.glucose.value(),
-<<<<<<< HEAD
 			glucoseOccurence: glucoseOccurence,
 			carbPeriod: carbPeriod
-=======
-			glucoseOccurence: 3
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 		};
 
 		lakes = filterOne.carbsAndGlucose(readings, options);	
@@ -168,13 +147,10 @@ var search = function(readings, range) {
 		return;
 	}
 
-<<<<<<< HEAD
 	if(lakes.length == 0) {
 		$('.search_results_summary').text('No results :(. Try again.');
 	}
 
-=======
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 	lakes.reverse();
 
 	lakes = _.uniq(lakes, function(l) {
@@ -184,7 +160,6 @@ var search = function(readings, range) {
 	var count = 0;
 	var shown = 20;
 
-<<<<<<< HEAD
 	
 
 	drawPage = PageDrawer(lakes);
@@ -196,17 +171,6 @@ var search = function(readings, range) {
 	$('.pagging_next').click(drawPage.next);
 
 	drawPage.page(0,20);
-=======
-	for(var i in lakes) {
-		drawLake(lakes[i]);
-		
-		if(count++ == shown) {
-			break;
-		} 
-	}
-	
-	$('.search_results_summary').text(lakes.length + ' results found. ' + count + ' shown.');
->>>>>>> 9e6c36d8a47f316f79de43e6153351711b45d492
 };
 
 var openSection = function(el) {
