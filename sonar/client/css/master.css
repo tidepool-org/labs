@@ -14,6 +14,27 @@ You should have received a copy of the License along with this program; if
 not, you can obtain one from Tidepool Project at tidepool.org.
 == BSD2 LICENSE ==
 */
+.pool_date {
+  cursor: pointer;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(175, 175, 175, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.lake_chart {
+  width: 570px;
+  overflow-x: scroll;
+  overflow-y: none;
+}
+.lake_chart > svg {
+  margin-bottom: 5px !important;
+}
 body {
   padding: 30px;
   background: #f7f7f8;
@@ -356,6 +377,7 @@ svg {
 .search_results_items {
   height: 1080px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .search_results_items > li {
   padding: 20px 10px;

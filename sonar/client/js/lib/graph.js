@@ -14,15 +14,16 @@ You should have received a copy of the License along with this program; if
 not, you can obtain one from Tidepool Project at tidepool.org.
 == BSD2 LICENSE ==
 */
-var graph = function(id, data, options) {
-	var svg = d3.select('#' + id).append('svg')
+var graph = function(id, d, options) {
+	var svg = d3.select('#' + id + '> .lake_chart').append('svg')
 		.attr('width', options.width)
 		.attr('height', options.height);
 	var yStart = 15;
 	var xStart = 30;
+	var middle = d[0].time;
 
 	var xScale = d3.time.scale()
-    .domain([new Date(data[0].time), new Date(data[data.length-1].time)])
+    .domain([new Date(middle - 1000*60*60*6), new Date(middle + 1000*60*60*6)])
     .range([xStart, options.width]);
 
   var xAxis = d3.svg.axis().scale(xScale)
@@ -236,10 +237,14 @@ var graph = function(id, data, options) {
 		}
 	}
 	
+	var readings = _.filter(data.readings, function(reading) {
+		return reading.time > xScale.domain()[0] && reading.time < xScale.domain()[1];
+	});
+
 	draw.glucoseLabels();
-	draw.cbg(_.filter(data, function(reading) { return reading.type == 'cbg'}));
-	draw.smbg(_.filter(data, function(reading) { return reading.type == 'smbg'}));
-	draw.wizard(_.filter(data, function(reading) { return reading.type == 'wizard'}))
+	draw.cbg(_.filter(readings, function(reading) { return reading.type == 'cbg'}));
+	draw.smbg(_.filter(readings, function(reading) { return reading.type == 'smbg'}));
+	draw.wizard(_.filter(readings, function(reading) { return reading.type == 'wizard'}))
 	$('.tipsyTitle').tipsy({gravity: 's'});
 	$('.tipsyTitleBolus').tipsy({html: true, gravity: 'w'});
 };

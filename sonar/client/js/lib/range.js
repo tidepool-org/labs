@@ -15,14 +15,18 @@ not, you can obtain one from Tidepool Project at tidepool.org.
 == BSD2 LICENSE ==
 */
 var onFilterUpdate = function() {
-	console.log('onFilterUpdate', arguments);
+	if(!sections.searchCriteria.filters.carbs.selected()) {
+		search(data.readings, true, true);	
+	}
 };
 
 var singleRange = function(criteria, options) {
+	options.onChange = onFilterUpdate;
 	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range').ionRangeSlider(options);
 };
 
 var carbSingleRange = function(criteria, options) {
+	options.onChange = onFilterUpdate;
 	$('.' + criteria).find('.search_panel_sections_filter_criteria_singleRange_range_carb').ionRangeSlider(options);
 };
 
@@ -69,10 +73,27 @@ var range = function(criteria, settings, labels) {
 		var label = labels[i];
 
 		var click = function(label) {
-			return function() {
+			return function(event) {
+				var values = $('.' + criteria).find('.search_panel_sections_filter_criteria_ranges_range').val().split(';');
+				var from = values[0];
+				var to = values[1];
+
+				if (event.shiftKey) {
+					if (from > label.start) {
+						from = label.start;
+					}
+
+					if (to < label.end) {
+						to = label.end
+					}
+				} else {
+					from = label.start;
+					to = label.end;
+				}
+
 				$('.' + criteria).find('.search_panel_sections_filter_criteria_ranges_range').ionRangeSlider('update', {
-					from: label.start,
-					to: label.end
+					from: from,
+					to: to
 				});	
 			}
 		}(label);
@@ -89,9 +110,7 @@ var range = function(criteria, settings, labels) {
     prefix: settings.prefix,
     postfix: settings.postfix,
     maxPostfix: settings.maxPostfix,
-    onChange: function(obj) {
-    	//onFilterUpdate(criteria, obj);
-    }
+    onChange: onFilterUpdate
 	});
 
 	setTimeout(function() {
@@ -103,7 +122,7 @@ var range = function(criteria, settings, labels) {
 
 		$html.find('.search_panel_sections_filter_criteria_ranges_range').ionRangeSlider('update', {
 			from: start,
-			to: start
+			to: start,
 		});
 	}, 500);
 

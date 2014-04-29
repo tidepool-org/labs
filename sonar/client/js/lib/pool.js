@@ -142,35 +142,34 @@ var filterOne = {
 
 					lastReading = reading;
 				} else {
-					hits = 0;
-				}
-			}
+					if(hits > occurence[0] && hits < occurence[1]) {
+						pool = [];
 
-			if(hits == occurence) {
-				pool = [];
-				console.log('start', start);
+						for(var j = start; j < readings.length; j++) {
+							var _reading = readings[j];
 
-				for(var j = start; j < readings.length; j++) {
-					var _reading = readings[j];
+							pool.push(_reading);
+							
+							if(_reading.time - first.time > 1000*60*60*6) {
+								pools.push({
+									start: first,
+									end: _reading,
+									readings: pool
+								});
 
-					pool.push(_reading);
-					
-					if(_reading.time - first.time > 1000*60*60*6) {
-						pools.push({
-							start: first,
-							end: _reading,
-							readings: pool
-						});
-
-						pool = null;
-						break;
+								pool = null;
+								break;
+							}
+						}
 					}
+
+					hits = 0;
 				}
 			}
 		}
 
 		glucoseOnlyPools = pools;
-		console.log('pools', pools);
+		//console.log('pools', pools);
 
 		return pools;
 	},

@@ -16,3 +16,20 @@ food ic
 correcrtion isf
 
 visual things
+
+--
+no bolus option.
+
+caliber glucse duration
+
+shift click
+
+sliding buffer.
+--
+historgram.
+
+over -> event duration.
+
+
+
+shift click.

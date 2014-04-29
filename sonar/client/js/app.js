@@ -29,19 +29,27 @@ var drawLake = function(lake) {
 		return;
 	}
 	var id = 'pool_' + lake.start.time;
-	var template = _.template("<li id='<%= id%>'><div class='pool_date'><%= start %></div><div class='clear'></div></li>");
+	var template = _.template("<li id='<%= id%>'><div class='pool_date'><%= start %></div><div class='clear'></div><div class='lake_chart'></div></li>");
 
 	$('.search_results_items').append(template({id: id, start: moment(lake.start.time).format('dddd MMMM Do YYYY h:mma')}));
 
 	graph(id, lake.readings, {
 		height: 250,
 		sectionHeight: 175, 
-		width: 570
+		width: 1140
+	});
+
+	$('#' + id +' > .lake_chart').scrollLeft(570/2);
+
+	$('#' + id +' > .pool_date').click(function() {
+		$('#' + id +' > .lake_chart').scrollLeft(570/2);		
 	});
 };
 
 var drawPage;
+
 var PageDrawer = function(lakes) {
+	data.lakes = lakes;
 	var pageSize = 20;
 	var current = 0;
 
@@ -53,13 +61,13 @@ var PageDrawer = function(lakes) {
 	}
 
 	var page = function(start, end) {
-		$('.search_results_items').html('');
+		//$('.search_results_items').html('');
 
 		for(var i = start; i < end; i++) {
 			drawLake(lakes[i]);
 		}
 		
-		$('.search_results_summary').text(lakes.length + ' results found. ' + start + ' to ' + end + ' shown.');
+		$('.search_results_summary').text(lakes.length + ' results found. 0 to ' + end + ' shown.');
 	};
 
 	return {
@@ -67,11 +75,13 @@ var PageDrawer = function(lakes) {
 			if(lakes.length > current + pageSize) {
 				current += pageSize;
 
-				$('.pagging_previous').show();
+				//$('.pagging_previous').show();
+				waiting();
 				page(current, current + pageSize);
+				clearWaiting();
 				
 			}
-
+			return;
 			if(current + pageSize >= lakes.length) {
 				$('.pagging_next').hide();
 			}
@@ -96,19 +106,29 @@ var PageDrawer = function(lakes) {
 	}
 };
 
-var search = function(readings, range) {
-	$('.search_results_summary').text('searching...');
-	$('.search_results_items').html('');
+var search = function(readings, range, searchOnly) {
+	var startTime = Date.now();
+
+	if(!searchOnly) {
+		$('.search_results_summary').text('searching...');
+		$('.search_results_items').html('');
+	}
 
 	var searchOptions = {
 		days: sections.searchCriteria.filters.days.selected() ? sections.searchCriteria.filters.days.value() : null,
 		timeOfDayRange: sections.searchCriteria.filters.timeOfDay.selected() ? sections.searchCriteria.filters.timeOfDay.value() : null
 	};
 
-	var glucoseOccurence = 3;
+	var glucoseOccurence = [3, 10000000];
 
 	if (sections.searchCriteria.filters.glucose.selected()) {
-		glucoseOccurence = parseInt($('.search_panel_sections_filter_criteria_singleRange_range').val())/5;
+		glucoseOccurence = $('.search_panel_sections_filter_criteria_singleRange_range').val().split(';');
+		glucoseOccurence[0] = parseInt(glucoseOccurence[0])/5;
+		glucoseOccurence[1] = parseInt(glucoseOccurence[1])/5;
+
+		if(glucoseOccurence[1] >= 52) {
+			glucoseOccurence[1] = 10000000;
+		}
 	}
 
 	var carbPeriod = 1;
@@ -136,18 +156,20 @@ var search = function(readings, range) {
 
 		lakes = filterOne.carbsAndGlucose(readings, options);	
 
-		console.log('carbsAndGlucose', lakes);
+	//	console.log('carbsAndGlucose', lakes);
 
 	} else if(sections.searchCriteria.filters.bolus.selected() && !sections.searchCriteria.filters.carbs.selected() && !sections.searchCriteria.filters.glucose.selected())	{
 		lakes = filterOne.bolusOnly(readings, sections.searchCriteria.filters.bolus.value(), searchOptions.days, searchOptions.timeOfDayRange);
 	//} else if bolus and carbs{
 	//} else if bolus and glucose{
 	} else {
+		if(!searchOnly)
 		$('.search_results_summary').text('No results :(. Try again.');
 		return;
 	}
 
 	if(lakes.length == 0) {
+		if(!searchOnly)
 		$('.search_results_summary').text('No results :(. Try again.');
 	}
 
@@ -160,17 +182,79 @@ var search = function(readings, range) {
 	var count = 0;
 	var shown = 20;
 
-	
+	drawTimeBind(lakes);
 
+	console.log('search time: ', Date.now() - startTime);
+
+	if(searchOnly) {
+		return;
+	}
+
+	var renderStartTime = Date.now();
 	drawPage = PageDrawer(lakes);
 
-	$('.pagging').show();
-	$('.pagging_previous').unbind();
-	$('.pagging_next').unbind();
-	$('.pagging_previous').click(drawPage.previous);
-	$('.pagging_next').click(drawPage.next);
+	$('.search_results > ul').unbind('scroll');
+	$('.search_results > ul').bind('scroll', function() {
+
+		if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+		  drawPage.next();
+		}
+	});
+
+	//$('.pagging').show();
+	//$('.pagging_previous').unbind();
+	//$('.pagging_next').unbind();
+	//$('.pagging_previous').click(drawPage.previous);
+	//$('.pagging_next').click(drawPage.next);
 
 	drawPage.page(0,20);
+
+	console.log('render time: ', Date.now() - renderStartTime);
+};
+
+var drawTimeBind = function(lakes) {
+	var bins = timeBins(lakes);
+
+	$('#criteria_timeOfDay_label_0').html('Night ' + (bins[0].value ? '('+bins[0].value +')' : ''));
+	$('#criteria_timeOfDay_label_1').html('Morning ' + (bins[1].value ? '('+bins[1].value +')' : ''));
+	$('#criteria_timeOfDay_label_2').html('Afternoon ' + (bins[2].value ? '('+bins[2].value +')' : ''));
+	$('#criteria_timeOfDay_label_3').html('Evening ' + (bins[3].value ? '('+bins[3].value +')' : ''));
+};
+
+var timeBins = function(lakes) {
+	var bins = [
+		{start: 0, end: 6, title: 'Night'},
+		{start: 6, end: 12, title: 'Morning'},
+		{start: 12, end: 18, title: 'Afternoon'},
+		{start: 18, end: 24, title: 'Evening'}
+	];
+
+	var results = _.pluck(lakes, 'start');
+
+	var groups = _.groupBy(results, function(reading) {
+		for(var i in bins) {
+			var bin = bins[i];
+
+			if (reading.dayTime > (bin.start * 1000 * 60 * 60) && reading.dayTime <= (bin.end * 1000 * 60 * 60)) {
+				return i;
+			}
+		}
+
+		return 'none';
+	});
+
+	//return groups;
+
+	for(var i in bins) {
+		if(groups[i] && groups[i].length) {
+			bins[i].value = groups[i].length;
+			continue;
+		}
+		
+		bins[i].value = 0;
+	}
+
+	return bins;
 };
 
 var openSection = function(el) {
@@ -451,6 +535,8 @@ var loadSonarSearchInterface = function(readings) {
 	singleRange('criteria_glucose', {min: 5,
     max: 5*12*6,
     from: 5,
+    type: 'double',
+    to: 360,
     postfix: 'min',
   	step: 5});
 
@@ -467,7 +553,7 @@ var loadSonarSearchInterface = function(readings) {
 	]);
 
 	carbSingleRange('criteria_carbs', {min: 1,
-    max: 6*60,
+    max: 2*60,
     from: 1,
   	postfix: 'min'
   });
@@ -481,7 +567,9 @@ var loadSonarSearchInterface = function(readings) {
 
 	range('criteria_timeOfDay', {
 		//values: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm','12am','1am','2am','3am','4am','5am','6am']
-		values: ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm','12am']
+		values: ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm','12am'],
+		from: 0,
+		to: 24
 	}, [
 		{start: 0, end: 6, title: 'Night'},
 		{start: 6, end: 12, title: 'Morning'},
