@@ -19,17 +19,23 @@ not, you can obtain one from Tidepool Project at tidepool.org.
 body {
 	font-family: sans-serif;
 	color: gray;
-	cursor: cell;
+	cursor: default;
+	margin-top: 50px;
 }
 .svg-insulin-handle{
-	fill: rgb(80, 80, 226);
+	fill: blue;
 	cursor: row-resize;
 }
 .svg-insulin-handle:hover{
-	fill: rgb(41, 41, 224);
+	fill: blue;
 }
 .svg-carb-circle {
 	fill: orange;
+	cursor: pointer;
+}
+
+.svg-none-circle {
+	fill: gray;
 	cursor: pointer;
 }
 .svg-carb-value, .svg-insulin-value {
@@ -51,7 +57,7 @@ body {
 }
 .svg-dots-line {
 	stroke: @gray;
-	stroke-width: 1;	
+	stroke-width: 1;
 }
 .svg-carb-handle {
 	fill: rgb(246, 141, 92);

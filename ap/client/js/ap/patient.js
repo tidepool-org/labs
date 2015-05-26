@@ -1,3 +1,4 @@
+var globalData = [];
 app.patient = (function() {
 	return {
 		init: function(callback) {
@@ -10,7 +11,7 @@ app.patient = (function() {
 
 			$.ajax({url: '/template/small.html'}).done(function(content) {
       	self.template.small = _.template(content);
-      	
+
       	$.ajax({url: '/template/big.html'}).done(function(content) {
 	      	self.template.big = _.template(content);
 
@@ -26,7 +27,7 @@ app.patient = (function() {
 			glucagon: {
 				value: app.qs.glucagon,
 				hide: function() {
-					$('.overlay-stats-glucagon').hide();		
+					$('.overlay-stats-glucagon').hide();
 					$('.overlay-patient-header-glucagon').hide();
 				},
 				show: function () {
@@ -85,7 +86,7 @@ app.patient = (function() {
 			$('.patient-list').sortable({
 				placeholder: "ui-state-highlight"
 			});
-  		$('.patient-list').disableSelection();	
+  		$('.patient-list').disableSelection();
 		},
 		toggleImage: function($img, turnBlack) {
 			var src = $img.attr('src');
@@ -98,7 +99,7 @@ app.patient = (function() {
 			} else {
 				src = src.replace('problack','profiles');
 			}
-			
+
 			$img.attr('src', src);
 		},
 		styleValue: function(value, $overlaySection, $item, patient) {
@@ -223,7 +224,7 @@ app.patient = (function() {
 				patient.correctedMeals = patient.dualHormoneData.correctionMeals;
 			};
 
-			if (!stopTick) 
+			if (!stopTick)
 				patient.readingIndex++;
 
 			var pixelWidth = 12*app.patient.hours.wide;
@@ -242,15 +243,15 @@ app.patient = (function() {
 			var previousValue = parseInt(_readings.cgm[_readings.cgm.length-2].value);
 
 			patient.profile.value = currentValue;
-			
-			var sumInsulin = Math.round(_.reduce(patient.readings.bolus, function(memo, bolus){ return memo + bolus.value; }, 0)/200); 
-			
+
+			var sumInsulin = Math.round(_.reduce(patient.readings.bolus, function(memo, bolus){ return memo + bolus.value; }, 0)/200);
+
 			patient.$item.find('.patient-content-hormone-insulin').find('.value').html(sumInsulin);
 			patient.$overlaySection.find('.overlay-stats-hormone-insulin').html(sumInsulin);
 
-			
+
 			patient.$item.find('.patient-graph-small > svg').remove();
-			
+
 			var graphData = {
 				cgm: _readings.cgm,
 				carb: _readings.carb,
@@ -258,24 +259,27 @@ app.patient = (function() {
 				correctedMeals: patient.correctedMeals
 			};
 
+
+			globalData.push(graphData);
+
 			if(app.liveChartList) {
-				patient.ticks = app.patient.updateListViewGraph(patient.$item.find('.patient-graph-small')[0], graphData, patient.ticks);	
+				patient.ticks = app.patient.updateListViewGraph(patient.$item.find('.patient-graph-small')[0], graphData, patient.ticks);
 			}
-			
+
 			if(patient.shown) {
 				if(app.mobile) {
 					$('.portrait-chart > svg').remove();
 					patient.ticks = app.patient.updateMobilePortraitGraph($('.portrait-chart')[0], graphData, patient.ticks);
 				} else {
 					patient.$overlaySection.find('.overlay-chart > svg').remove();
-					patient.ticks = app.patient.updateOverlayGraph(patient.$overlaySection.find('.overlay-chart')[0], graphData, patient.ticks);				
+					patient.ticks = app.patient.updateOverlayGraph(patient.$overlaySection.find('.overlay-chart')[0], graphData, patient.ticks);
 				}
-				
+
 				var stats = app.stats(_readings);
-				
-				app.overlay.updateStats(patient, stats);	
+
+				app.overlay.updateStats(patient, stats);
 			}
-			
+
 
 			//graph(patient.$overlaySection.find('.overlay-chart')[0], _readings.cgm, _readings.carb, _readings.bolus, patient.correctedMeals, {width: 722, height: 450, hours: app.patient.hours.wide, xPaddingLeft: 50, ticks: app.patient.ticks});
 			//patient.$item.find('.patient-graph-big > svg').remove();
@@ -301,14 +305,14 @@ app.patient = (function() {
 				if(!keepState) {
 					app.$patients[i].tipState = app.patient.generateRandomStatusTip();
 				}
-				
+
 				app.$patients[i].alert = app.patient.setStatusTip($patient.$item, app.$patients[i].tipState);
 			}
 		},
 		statusBar: {
 			randomSignal: function() {
 				var index = Math.random() > 0.98	 ? 0:1;
-				
+
 				return { index: index, value: index == 0 ? '/img/signal/signal-off.png' : '/img/signal/signal-on.png', alert: index == 0};
 			},
 			randomPumpLevel: function() {
@@ -381,7 +385,7 @@ app.patient = (function() {
 						name: 'Insulin Pump'
 					}
 				};
-				
+
 				if(app.patient.state.glucagon.value) {
 					first = _.sortBy(levels,function(v) {return v.index})[0];
 					items.glucagon = {
@@ -456,14 +460,14 @@ app.patient = (function() {
 					//console.log(str, i, images, images[i]);
 
 					if($el.length) {
-						$el.attr('src',images[i]);	
+						$el.attr('src',images[i]);
 					}
 				}
 			};
 
 			var signals = function(state) {
 				var $icon = $item.find('.patient-header-status-icon-signal');
-				
+
 				// set overlay signals
 				updateOverlayStats('.overlay-patient-header-signal', {
 					insulin: state.items.insulin.img,
@@ -482,7 +486,7 @@ app.patient = (function() {
 			};
 			var hormones = function(state) {
 				var $icon = $item.find('.patient-header-status-icon-pump');
-				var html = app.patient.template.tip({ items: state.items});	
+				var html = app.patient.template.tip({ items: state.items});
 
 				updateOverlayStats('.overlay-patient-header-pump', {
 					insulin: state.items.insulin.img,
@@ -497,7 +501,7 @@ app.patient = (function() {
 			};
 			var batteries = function(state) {
 				var $icon = $item.find('.patient-header-status-icon-battery');
-				
+
 				updateOverlayStats('.overlay-patient-header-battery', {
 					insulin: state.items.insulin.img,
 					glucagon: !!state.items.glucagon ? state.items.glucagon.img : '',
@@ -506,7 +510,7 @@ app.patient = (function() {
 				});
 
 				var html = app.patient.template.tip({ items: state.items});
-				
+
 				$icon.html('<img src="' + state.first.value +'">');
 				$icon.attr('title', html);
 				$icon.tipsy({gravity: 's', html: true, opacity: 1, left: 10});
@@ -533,13 +537,16 @@ app.patient = (function() {
 			if(app.mobile) {
 				return;
 			}
+
 			var options = {width: 591, height: 210, hours: app.patient.hours.wide, size:'small', xPaddingLeft: 30,labelPadding:0, ticks: ticks, background: '#ECECEC'};
-			
+
+			console.log('options',options);
+
 			return graph($item, data.cgm, data.carb, data.bolus, data.correctedMeals, options);
 		},
 		updateMobilePortraitGraph: function($overlay, data, ticks) {
 			var options = {width: 460, height: 280, hours: app.patient.hours.wide, xPaddingLeft: 30, labelPadding:0, ticks: ticks};
-			
+
 			return graph($overlay, data.cgm, data.carb, data.bolus, data.correctedMeals, options);
 		},
 		updateOverlayGraph: function($overlay, data, ticks) {
@@ -549,7 +556,7 @@ app.patient = (function() {
 			var options = {width: 722, height: 450, hours: app.patient.hours.wide, xPaddingLeft: 50, labelPadding:20, ticks: ticks};
 			//var options = {width: 590, height: 200, hours: app.patient.hours.wide, xPaddingLeft: 50, ticks: ticks};
 			//var options = {width: 590, height: 200, hours: app.patient.hours.wide, xPaddingLeft: 50, ticks: ticks, size: 'small'};
-			
+
 			return graph($overlay, data.cgm, data.carb, data.bolus, data.correctedMeals, options);
 		},
 		add: function(profile, callback, correctForLows, meals) {
@@ -566,15 +573,15 @@ app.patient = (function() {
 				if(!correctedMeals) {
 					correctedMeals = [];
 				}
-				
+
 				var _readings = app.data.cutReadings(readings, 0, 12* app.patient.hours.wide);
 				var currentValue = parseInt(_readings.cgm[_readings.cgm.length-1].value);
 				var previousValue = parseInt(_readings.cgm[_readings.cgm.length-2].value);
-			
+
 				profile.value = currentValue;
-				profile.sumInsulin = Math.round(_.reduce(_readings.bolus, function(memo, bolus){ return memo + bolus.value; }, 0)/200); 
-				profile.sumCarbs = Math.round(_.reduce(_readings.carb, function(memo, carb){ return memo + carb.value; }, 0)); 
-				
+				profile.sumInsulin = Math.round(_.reduce(_readings.bolus, function(memo, bolus){ return memo + bolus.value; }, 0)/200);
+				profile.sumCarbs = Math.round(_.reduce(_readings.carb, function(memo, carb){ return memo + carb.value; }, 0));
+
 				profile.hormone = {
 					insulin: profile.sumInsulin,
 					glucagon: profile.sumCarbs
@@ -582,7 +589,7 @@ app.patient = (function() {
 
 				var $item = $(app.patient.template.small(profile));
 				var $overlaySection = $(app.patient.template.big(profile));
-				
+
 				//graph($overlaySection.find('.overlay-chart')[0], _readings.cgm, _readings.carb, _readings.bolus, correctedMeals, {width: 722, height: 458, hours: app.patient.hours.wide, xPaddingLeft: 50});
 
 				var graphData = {
@@ -618,7 +625,7 @@ app.patient = (function() {
 			addReading(null, dualHormoneReadings[profile.id].singleHormoneData,dualHormoneReadings[profile.id].dualHormoneData);
 
 			//app.data.patient.generateSingleAndDualHormoneReadings(meals, function(error, data) { addReading(error, data.singleHormoneData, data.dualHormoneData); });
-			
+
 			/*if(correctForLows == 2) {
 				app.data.patient.getReadings(meals, function(err, readings) {
 					var correctedMeals = app.data.patient.avoidHighs(readings, meals);
@@ -635,7 +642,7 @@ app.patient = (function() {
 							};
 
 							addReading(error, {readings: readings, correctionMeals:[]}, {readings: readings3, correctionMeals: secondCorrectedMeals.correctionMeals});
-						});	
+						});
 					});
 				});
 			}*/
@@ -650,11 +657,11 @@ app.patient = (function() {
 				$(el).find('.patient-content-bg-value').addClass('patient-content-bg-value-small');
 				$(el).find('.patient-content-image').addClass('patient-content-image-small');
 				$(el).find('.patient-content-hormone').addClass('patient-content-hormone-small');
-				
+
 				//$(el).addClass('patient-small');
 
 				$(el).find('.patient-graph-small').show();
-				
+
 			},
 			normal: function(e, el) {
 				if (!el) {

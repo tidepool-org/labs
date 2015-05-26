@@ -1,7 +1,7 @@
 var express = require('express')
 	, http = require('http')
 	, less = require('less-middleware')
-	, simulator = require('./simulator/simulator')()
+	, simulator = require('./simulator/simulator/simulator')()
 	, app = express()
 	, faye = require('faye');
 
@@ -10,7 +10,7 @@ var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 //setup express
 app.set('views', __dirname + '/client/views');
 app.engine('html', require('ejs').renderFile);
-app.set('port', process.argv[2] === 'production' ? 80 : 8080);
+app.set('port', process.argv[2] === 'production' ? 80 : 8081);
 app.set('X-Frame-Options', 'SAMEORIGIN, GOFORIT');
 app.use(express.favicon());
 app.use(express.compress());
@@ -42,7 +42,7 @@ app.get('/simulator', function(request, response) {
 	var x = request.query.x.split(',').map(function(s) {return parseFloat(s);});
 	var u = request.query.u.split(',').map(function(s) {return parseFloat(s);});
 	var d = request.query.d.split(',').map(function(s) {return parseFloat(s);});
-	
+
 	simulator.single(x, u, d, function(error, x1, glucose, insulin) {
 		if (error) {
 			response.write(error);
@@ -56,7 +56,7 @@ app.get('/simulator', function(request, response) {
 	});
 });
 
-//serve 
+//serve
 var server = http.createServer(app);
 
 bayeux.attach(server);

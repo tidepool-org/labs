@@ -34,7 +34,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 		.range([options.xPaddingLeft || 0, options.width])
 		.clamp(true);
 		xXScale = xScale;
-		
+
 	var drawYAxisLabels = function(labels, yScale, css) {
 		for(var i in labels) {
     	var label = labels[i];
@@ -46,7 +46,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
     	if (label < 10) {
     		x = options.labelPadding + 13;
     	}
-    	
+
     	svg.append('text')
 				.attr('class', css || 'svg-label-axis')
 				.attr('x', x)
@@ -80,14 +80,14 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				if (reading.value < 80) {
 					return options.colors.lowRange;
 				}
-				
+
 				if (reading.value > 180) {
 					return options.colors.highRange;
 				}
-				
+
 				return options.colors.normalRange;
 			});
-	};	
+	};
 
 	var bubble = function(readings, options) {
 		svg.selectAll()
@@ -97,7 +97,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 			.attr('attr', function(reading) {
 				var size = 8;
 				$(this).attr("cx", (xScale(reading._index) + size/2) - 3);
-				
+
 				if(reading.value < 10) {
 					size = 4;
 					$(this).attr("cx", (xScale(reading._index) + size/2));
@@ -128,7 +128,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				.range([options.paddingTop, options.paddingTop + options.height])
 				.clamp(true), 'svg-label-axis-carb');
 
-			svg.selectAll()	
+			svg.selectAll()
 				.data(readings)
 				.enter()
 				.append("rect")
@@ -137,8 +137,8 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				})
 				.attr('attr', function(reading) {
 					var length = yScale(reading.value < 1 ? 0 : reading.value);
-					
-					$(this).attr('fill', options.colors.carbs);	
+
+					$(this).attr('fill', options.colors.carbs);
 					$(this).attr("height", length);
 					$(this).attr("width", options.dotWidth);
 					$(this).attr("y", options.paddingTop);
@@ -155,7 +155,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				.range([options.paddingTop, options.paddingTop + options.height])
 				.clamp(true), 'svg-label-axis-glucagon');
 
-			svg.selectAll()	
+			svg.selectAll()
 				.data(readings)
 				.enter()
 				.append("rect")
@@ -165,21 +165,21 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				.attr('attr', function(reading) {
 					var length = yScale(reading.value);
 
-					length = yScale(0);	
+					length = yScale(0);
 
 					if(correctedMeals.length > 0) {
 						//console.log(correctedMeals);
 
 						if(correctedMeals[reading.realIndex]) {
 							//console.log('reading.realIndex', reading.realIndex, correctedMeals);
-							//length = yScale(correctedMeals[reading.realIndex].d);	
-							length = yScale(15);	
+							//length = yScale(correctedMeals[reading.realIndex].d);
+							length = yScale(15);
 						} else {
 							//length = yScale(15);
 						}
-					}					
+					}
 
-					$(this).attr('fill', options.colors.glucagon);	
+					$(this).attr('fill', options.colors.glucagon);
 					$(this).attr("height", length);
 					$(this).attr("width", options.dotWidth);
 					$(this).attr("y", options.paddingTop);
@@ -191,15 +191,15 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				.range([0, options.height])
 				.clamp(true);
 
-			
+
 				drawYAxisLabels([2,5,10], d3.scale.linear()
 					.domain([12, -2])
 					.range([options.paddingTop, options.paddingTop + options.height])
-					.clamp(true), 'svg-label-axis-bolus');	
-			
-			
+					.clamp(true), 'svg-label-axis-bolus');
 
-			svg.selectAll()	
+
+
+			svg.selectAll()
 				.data(readings)
 				.enter()
 				.append("rect")
@@ -208,8 +208,8 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				})
 				.attr('attr', function(reading) {
 					var length = yScale(reading.value);
-					
-					$(this).attr('fill', options.colors.bolus);	
+
+					$(this).attr('fill', options.colors.bolus);
 					$(this).attr("height", length);
 					$(this).attr("width", options.dotWidth);
 					$(this).attr("y", (options.paddingTop + options.height) - length);
@@ -243,12 +243,12 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 			.domain([0, segmentCount])
 			.range([options.xPaddingLeft, options.width + sectionWidth])
 			.clamp(true);
-		globalXScale = xScale;		
+		globalXScale = xScale;
 
 		var textLabels = ['12 AM', '3 AM', '6 AM', '9 AM', '12 PM', '3 PM', '6 PM', '9 PM'];
 
-		for (var i = 0; i < segmentCount; i++) { 
-			
+		for (var i = 0; i < segmentCount; i++) {
+
 			if(segmentShadeIndex > (options.colors.shades.length - 1)) {
 				segmentShadeIndex = 0;
 			}
@@ -298,7 +298,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 			.domain([0, 320])
 			.range([(options.bgOptions.height - options.dotWidth - 10) + options.yPaddingTop, options.dotWidth + options.yPaddingTop])
 			.clamp(true);
-			
+
 		svg.append('rect')
 			.attr('x', 0)
 			.attr('y', yScale(0))
@@ -361,7 +361,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 	var bgOptions = _.defaults({
 		height: (options.height - options.yPaddingTop) * options.ratio
 	}, options);
-	
+
 	var rOptions = _.defaults({
 		paddingTop: options.height * (options.ratio + options.padding),
 		height: options.height * (1 - options.ratio - options.padding)
@@ -381,23 +381,24 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 	load a new data set with glucagon
 
 	if (options.state.glucagon.value) {
-		rectangle(carbReadings, rOptions);	
+		rectangle(carbReadings, rOptions);
 	} else {
 
 	}*/
 	var state = app.patient.state;
-
+	console.log('state', state);
+	
 	if(state.glucagon.value) {
 		if (state.carb.value == 0) {
 			var height = rOptions.height;
 			var paddingTop = rOptions.paddingTop;
-			
+
 			rOptions.height = height/2;
 			drawWe.bolus(bolusReadings, rOptions);
-			
+
 			rOptions.paddingTop = paddingTop + height/2;
 			drawWe.glucagon(carbReadings, rOptions);
-			
+
 			labels({
 				insulin: true,
 				glucagon: true
@@ -407,17 +408,17 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 		if (state.carb.value == 1) {
 			var height = rOptions.height - 17;
 			var paddingTop = rOptions.paddingTop;
-			
+
 			rOptions.height = height/2;
 			drawWe.bolus(bolusReadings, rOptions);
-			
+
 			rOptions.paddingTop = paddingTop + height/2;
 			drawWe.glucagon(carbReadings, rOptions);
 
 			rOptions.paddingTop = paddingTop + height;
 
 			bubble(carbReadings, rOptions);
-			
+
 			labels({
 				insulin: true,
 				glucagon: true,
@@ -428,7 +429,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 		if (state.carb.value == 2) {
 			var height = rOptions.height - 17;
 			var paddingTop = rOptions.paddingTop;
-			
+
 			rOptions.height = height/3;
 
 			rOptions.paddingTop = paddingTop + 5;
@@ -456,10 +457,10 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 		if (state.carb.value == 1) {
 			var height = rOptions.height - 17*2;
 			var paddingTop = rOptions.paddingTop;
-			
+
 			rOptions.height = height;
 			drawWe.bolus(bolusReadings, rOptions);
-			
+
 			rOptions.paddingTop = paddingTop + height + 17;
 
 			bubble(carbReadings, rOptions);
@@ -471,7 +472,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 		if (state.carb.value == 2) {
 			var height = rOptions.height;
 			var paddingTop = rOptions.paddingTop;
-			
+
 			rOptions.height = height/2;
 
 			rOptions.paddingTop = paddingTop + 5;
@@ -484,7 +485,7 @@ var graph = function(element, bgReadings, carbReadings, bolusReadings, corrected
 				insulin: true,
 				carbs: true
 			});
-		}	
+		}
 	}
 
 	return options.ticks;

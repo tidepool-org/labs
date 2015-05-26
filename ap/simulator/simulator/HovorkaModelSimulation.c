@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014 Line Healthcare Design
+Copyright (c) 2013 Diacon Group
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,54 +21,36 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-var graph = function(svg, data, options) {
+#include "HovorkaModel.h"
+#include "ODESolver.h"
 
+void HovorkaModelSimulation(
+			double* px, 
+			const int Nsim, const int Nsamples, 
+			const double* T, const double* U, const double* D,
+			const HovorkaModelParameters_t* pPar,
+			double *G, double *I,
+			double *pWork){
 
-	var dot = function(readings) {
-		readings = readings.map(function(d, i) {
-			d.index = i;
-			return d;
-		});
+	static const int nx = 10;
+	int k,kk;
 
-		var colors = {
-			highRange: '#3da6db',
-			normalRange: '#98CB64',
-			lowRange: '#FF8D79',
-		};
+	ODEModel_t *pODEModel;
+	pODEModel = HovorkaModel;
+	
+	kk=0;
+	G[kk] = px[4]/(pPar->VG);
+	I[kk] = px[6];
 
-		var xScale = d3.scale.linear()
-			.domain([0, 288])
-			.range([options.xPaddingLeft || 0, options.width])
-			.clamp(true);
-			xXScale = xScale;
-
-		var yScale = d3.scale.linear()
-			.domain([0, 450])
-			.range([options.height, 0])
-			.clamp(true)
-
-
-		svg.selectAll("circle")
-			.data(readings)
-			.enter()
-			.append("circle")
-			.attr("cx", function(reading) {
-				return xScale(reading._index);
-			})
-			.attr("cy", function(reading) {
-				return yScale(reading.value);
-			})
-			.attr('r', 4)
-			.attr('fill', function(reading) {
-				if (reading.value < 80) {
-					return colors.lowRange;
-				}
-
-				if (reading.value > 180) {
-					return colors.highRange;
-				}
-
-				return colors.normalRange;
-			});
-	};
-};
+	for(k=0; k<Nsim; k++){
+		kk++;
+		ExplicitEulerFixedStepSizeODESolver(
+				pODEModel, nx,
+				T[k],T[kk],Nsamples,
+				px,px,
+				&U[k], &D[k], pPar,
+				pWork);
+		G[kk] = px[4]/(pPar->VG);
+		I[kk] = px[6];
+	}
+}

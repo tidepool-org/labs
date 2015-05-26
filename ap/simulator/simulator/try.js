@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2014 Line Healthcare Design
+Copyright (c) 2013 Diacon Group
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,54 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-var graph = function(svg, data, options) {
+var exec = require('child_process').exec;
+
+var options = [
+	'-u', 6.68,
+	'-d', 0,
+	'-x', '12736.839721', '708.789439', '367.4', '367.4', '79.53069', '23.93733', '5.762595', '0.029504', '0.004725', '0.299655'
+];
 
 
-	var dot = function(readings) {
-		readings = readings.map(function(d, i) {
-			d.index = i;
-			return d;
-		});
-
-		var colors = {
-			highRange: '#3da6db',
-			normalRange: '#98CB64',
-			lowRange: '#FF8D79',
-		};
-
-		var xScale = d3.scale.linear()
-			.domain([0, 288])
-			.range([options.xPaddingLeft || 0, options.width])
-			.clamp(true);
-			xXScale = xScale;
-
-		var yScale = d3.scale.linear()
-			.domain([0, 450])
-			.range([options.height, 0])
-			.clamp(true)
-
-
-		svg.selectAll("circle")
-			.data(readings)
-			.enter()
-			.append("circle")
-			.attr("cx", function(reading) {
-				return xScale(reading._index);
-			})
-			.attr("cy", function(reading) {
-				return yScale(reading.value);
-			})
-			.attr('r', 4)
-			.attr('fill', function(reading) {
-				if (reading.value < 80) {
-					return colors.lowRange;
-				}
-
-				if (reading.value > 180) {
-					return colors.highRange;
-				}
-
-				return colors.normalRange;
-			});
-	};
-};
+exec('./TestHovorkaModelSimulationSingelStep -u 6.68 -d 0 -x 12736.839721 708.789439 367.4 367.4 79.53069 23.93733 5.762595 0.029504 0.004725 0.299655', function(error, stdout, stderr) {
+	console.log(stdout.split('\n'));
+});

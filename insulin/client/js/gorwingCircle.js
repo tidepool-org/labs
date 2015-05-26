@@ -48,7 +48,7 @@ var draw = function() {
 		  } else {
 		  	value.attr('x', position.x - 8);
 		  }
-		  
+
 		  value.text(textValue + 'g');
 		});
 
@@ -81,6 +81,6 @@ var draw = function() {
 		  console.log("clicked!");
 		});
 	};
-	
+
 	carbInput({x:200,y:200}, 20);
 };
