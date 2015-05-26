@@ -16,7 +16,7 @@ var express = require('express'),
 	app = express(),
 	less = require('less-middleware'),
 	fs = require('fs');
-var port = process.env.PORT || 8084;
+var port = process.env.PORT || 80;
 
 app.use(less({ src: __dirname + '/client'}));
 app.use(express.static(__dirname + '/client'));
