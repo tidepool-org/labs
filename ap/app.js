@@ -10,7 +10,7 @@ var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 //setup express
 app.set('views', __dirname + '/client/views');
 app.engine('html', require('ejs').renderFile);
-app.set('port', 8081);
+app.set('port', 8080);
 app.set('X-Frame-Options', 'SAMEORIGIN, GOFORIT');
 app.use(express.favicon());
 app.use(express.compress());
