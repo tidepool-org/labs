@@ -33,7 +33,7 @@ var run = function(days, options, callback) {
 		callback = options;
 		options = {};
 	}
-	
+
 	options = _.defaults(options, {
 		levels: levels
 	});
@@ -72,8 +72,9 @@ module.exports = {
 	run: run,
 	generate: generate
 };
-/*var days = 30;
 
+
+var days = 30;
 run(days, function(err, data) {
-	console.log(err, data.insulin.length/days);
-});*/
+	console.log(data);
+});

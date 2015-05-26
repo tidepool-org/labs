@@ -24,11 +24,10 @@ THE SOFTWARE.
 #include "HovorkaModel.h"
 
 void HovorkaModelDefaultParameters(double BW, HovorkaModelParameters_t* pPar){
-		
 	pPar->BW = BW;
 //==============================================================================
 	pPar->k12 = 0.066;    	// Transfer rate [1/min]
-//==============================================================================	
+//==============================================================================
 	pPar->ka1 = 0.006;    	// Deactivation rate [1/min]
 	pPar->ka2 = 0.06;     	// Deactivation rate [1/min]
 	pPar->ka3 = 0.03;     	// Deactivation rate [1/min]
@@ -56,6 +55,3 @@ void HovorkaModelDefaultParameters(double BW, HovorkaModelParameters_t* pPar){
 //==============================================================================
 
 }
-
-
-

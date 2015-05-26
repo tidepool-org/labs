@@ -1,0 +1,82 @@
+/*
+== BSD2 LICENSE ==
+Copyright (c) 2014, Tidepool Project
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the associated License, which is identical to the BSD 2-Clause
+License as published by the Open Source Initiative at opensource.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the License for more details.
+
+You should have received a copy of the License along with this program; if
+not, you can obtain one from Tidepool Project at tidepool.org.
+== BSD2 LICENSE ==
+*/
+@gray: rgb(206, 206, 206);
+
+body {
+	font-family: sans-serif;
+	color: gray;
+	cursor: cell;
+}
+.svg-insulin-handle{
+	fill: rgb(80, 80, 226);
+	cursor: row-resize;
+}
+.svg-insulin-handle:hover{
+	fill: rgb(41, 41, 224);
+}
+.svg-carb-circle {
+	fill: orange;
+	cursor: pointer;
+}
+.svg-carb-value, .svg-insulin-value {
+	font-size: 15px;
+	fill: white;
+	font-weight: lighter;
+	text-anchor: middle;
+}
+.svg-insulin-value {
+	font-size: 12px;
+}
+
+.svg-carb-legend {
+	fill: @gray;
+}
+.svg-insulin-line {
+	stroke: blue;
+	stroke-width: 3;
+}
+.svg-dots-line {
+	stroke: @gray;
+	stroke-width: 1;	
+}
+.svg-carb-handle {
+	fill: rgb(246, 141, 92);
+	cursor: col-resize;
+}
+.svg-carb-handle:hover {
+	fill: rgb(255, 111, 44);
+}
+.carbWidget {
+	opacity: 0.8;
+}
+.svg-dots-label {
+	font-size: 12px;
+	fill: @gray;
+}
+
+.svg-background {
+	opacity: 0;
+}
+
+.svg-bg-value {
+	width: 30px;
+	font-size: 20px;
+	text-anchor: middle;
+}
+.svg-glucose-value-circle {
+	cursor: pointer;
+}
