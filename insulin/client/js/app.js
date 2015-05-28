@@ -1,46 +1,12 @@
-/*
-The MIT License (MIT)
-
-Copyright (c) 2014 Line Healthcare Design
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
 //todo: stop using group translation use paddings instead also for carbs
 
-var doseCarb = true;
 $(function() {
 	draw({
-	//	0: {u:0,d:0}
+		0: {u:0,d:20/5}
 	});
-	$('body').keypress(function(event) {
-		if (event.which == 99) {
-			doseCarb = true;
-		}
-		if (event.which == 120) {
-			doseCarb = false;
-		}
-	});
-
 });
 
 // structure and build into an svg group. make customizable add constrints, units to insulin
-
 var draw = function(boluses) {
 	var position = {x:100,y:200};
 	var hours = 8;
@@ -69,8 +35,8 @@ var draw = function(boluses) {
 		.range([options.height + options.offset.y, options.offset.y])
 		.clamp(true);
 	var colors = {
-		highRange: '#646464',
-		normalRange: '#75c550',
+		highRange: '#B99BEA',
+		normalRange: '#98CB64',
 		lowRange: '#FF8D79'
 	};
 
@@ -84,8 +50,14 @@ var draw = function(boluses) {
 			.attr('display', 'none')
 			.attr('r', 2)
 			.on('click', function() {
-				//console.log(arguments);
+				console.log(arguments);
 			});
+		var bgValue = svg.append('text')
+	    .attr('class', 'svg-glucose-value-circle svg-bg-value')
+	    .attr('x', 775)
+	    .attr('y', 50)
+	    .attr('display', 'none')
+	    .text(10 + 'mg/dl');
 
 		svg.append("rect")
 			.attr('x', 0)
@@ -93,7 +65,7 @@ var draw = function(boluses) {
 			.attr('width', options.svgWidth)
 			.attr('height', options.svgHeight)
 			.attr('class', 'svg-background')
-			.on('click', function(event) {
+			.on('click', function() {
 				if(dragging) {
 					return;
 				}
@@ -105,11 +77,13 @@ var draw = function(boluses) {
 				}
 
 				boluses[i] = {
-					u: doseCarb ? 0 : 150,
-					d: doseCarb ? 1 : 0
+					u:0,
+					d: 10/5
 				};
 
 				glucoseCircle
+					.attr('display', 'none');
+				bgValue
 					.attr('display', 'none');
 
 				carbWidget(bgs[i], boluses[i].u, boluses[i].d*5);
@@ -138,11 +112,22 @@ var draw = function(boluses) {
 					color = colors.highRange;
 				}
 
+				bgValue
+					.attr('display', 'block')
+					.attr('fill', color)
+					.text(reading.value + ' mg/dl');
+
 				/*glucoseCircle
 					.attr('cx', xScale(reading.index))
 					.attr('cy', yScale(reading.value))
 					.attr('fill', 'color')
-					.attr('display', 'block')*/
+					.attr('display', 'block')
+
+				bgValue
+					.attr('x', xScale(reading.index))
+					.attr('y', yScale(reading.value) + 15/4)
+					.attr('display', 'block')
+					.text(reading.value);*/
 			});
 	};
 
@@ -173,15 +158,10 @@ var draw = function(boluses) {
 			.attr('cx', position.x)
 			.attr('cy', position.y)
 			.attr('r', r)
-			.attr('class', function() {
-				if(boluses[reading.index].d === 0) {
-					return 'svg-none-circle';
-				}
-				return 'svg-carb-circle';
-			})
+			.attr('class', 'svg-carb-circle')
 			.on('click', function() {
 				//console.log('carb click');
-				//console.log(boluses, reading, boluses[reading.index]);
+				console.log(boluses, reading, boluses[reading.index]);
 				delete boluses[reading.index];
 				$('#carbWidget-'+ reading.index).remove();
 				$('.svg-glucose-value-circle').hide();
@@ -215,11 +195,11 @@ var draw = function(boluses) {
 
 					textValue = xCarbScale.invert(r).toFixed(0);
 
-					//console.log('d3.event',d3.event, carbDx, textValue);
+					console.log('d3.event',d3.event, carbDx, textValue);
 
-					/*if(textValue < xCarbScale.domain()[0] || textValue > xCarbScale.domain()[1]) {
+					if(textValue < xCarbScale.domain()[0] || textValue > xCarbScale.domain()[1]) {
 						return;
-					}*/
+					}
 
 					d3.select(this).attr('cx', d3.event.x);
 
@@ -231,6 +211,14 @@ var draw = function(boluses) {
 				  line.attr('x2', parseInt(circle.attr('cy')));
 				  line.attr('y2', y2);
 				 	handle.attr('cy', y2);
+
+				  if (textValue < 10) {
+				  	value.attr('x', position.x - 5);
+				  } else {
+				  	value.attr('x', position.x - 8);
+				  }
+
+				 	value.text(textValue + 'g');
 
 				 	boluses[reading.index] = {u:insulin*10, d:textValue/5};
 					refresh(boluses);
@@ -257,17 +245,7 @@ var draw = function(boluses) {
 					$('.svg-glucose-value-circle').attr('display', 'none');
 
 					dragging = true;
-
-					var dy = 0;
-					if (d3.event.dy > 10) {
-						dy = 1;
-					} else if (d3.event.dy < -10) {
-						dy = -1;
-					} else {
-						dy = d3.event.dy;
-					}
-
-					insulin += dy;
+					insulin += d3.event.dy;
 
 					var y2 = parseInt(circle.attr('cy')) + parseInt(circle.attr('r')) + insulin;
 
@@ -293,24 +271,21 @@ var draw = function(boluses) {
 	      .attr('x', position.x)
 	      .attr('y', position.y + r + insulin + 4)
 	      .attr('width', insulinHandleR)
-				.text('i');
-	      //.text((insulin/15).toFixed(1) + 'u');
+	      .text((insulin/15).toFixed(1) + 'u');
 		}
 
-		if (textValue > 0) {
-			var value = widget.append('text')
-				.attr('class', 'svg-carb-value')
-				.attr('x', position.x)
-				.attr('y', position.y + 4)
-				.attr('width', r*2)
-				.text('g');
-		}
+		var value = widget.append('text')
+      .attr('class', 'svg-carb-value')
+      .attr('x', position.x)
+      .attr('y', position.y + 4)
+      .attr('width', r*2)
+      .text(carb + 'g');
 
     var line = widget.append('line')
       .attr('x1', position.x)
       .attr('y1', position.y + r)
       .attr('x2', position.x)
-      .attr('y2', position.y + r + insulin - insulinHandleR) 
+      .attr('y2', position.y + r + insulin - insulinHandleR)
       .attr('class', 'svg-insulin-line');
 
 		handle.on('click', function() {
@@ -339,14 +314,14 @@ var draw = function(boluses) {
 		      .attr('x1', xScale(i*12))
 		      .attr('y1', yScale(data[i*12].value - 50))
 		      .attr('x2', xScale(i*12))
-		      .attr('y2', yScale(data[i*12].value + 50)) 
+		      .attr('y2', yScale(data[i*12].value + 50))
 		      .attr('class', 'svg-dots-line');
 
 		    dots.append('text')
 	        .attr('class', 'svg-dots-label')
 	        .attr('x', xScale(i*12) - 7)
 	        .attr('y', yScale(data[i*12].value + 60))
-	        .text('~' + i + 'h');
+	        .text(i + 'h');
 			}
 		}();
 
@@ -392,6 +367,8 @@ var draw = function(boluses) {
 			for (var i in boluses) {
 				carbWidget(bgs[i], boluses[i].u, boluses[i].d*5);
 			}
+
+
 		});
 	};
 
