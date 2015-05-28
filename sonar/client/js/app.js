@@ -35,14 +35,14 @@ var drawLake = function(lake) {
 
 	graph(id, lake.readings, {
 		height: 250,
-		sectionHeight: 175, 
+		sectionHeight: 175,
 		width: 1140
 	});
 
 	$('#' + id +' > .lake_chart').scrollLeft(570/2);
 
 	$('#' + id +' > .pool_date').click(function() {
-		$('#' + id +' > .lake_chart').scrollLeft(570/2);		
+		$('#' + id +' > .lake_chart').scrollLeft(570/2);
 	});
 };
 
@@ -55,7 +55,7 @@ var PageDrawer = function(lakes) {
 
 	$('.pagging_next').hide();
 	$('.pagging_previous').hide();
-	
+
 	if(lakes.length > pageSize) {
 		$('.pagging_next').show();
 	}
@@ -66,7 +66,7 @@ var PageDrawer = function(lakes) {
 		for(var i = start; i < end; i++) {
 			drawLake(lakes[i]);
 		}
-		
+
 		$('.search_results_summary').text(lakes.length + ' results found. 0 to ' + end + ' shown.');
 	};
 
@@ -79,7 +79,7 @@ var PageDrawer = function(lakes) {
 				waiting();
 				page(current, current + pageSize);
 				clearWaiting();
-				
+
 			}
 			return;
 			if(current + pageSize >= lakes.length) {
@@ -137,12 +137,12 @@ var search = function(readings, range, searchOnly) {
 		carbPeriod = parseInt($('.search_panel_sections_filter_criteria_singleRange_range_carb').val());
 	}
 
-	if(sections.searchCriteria.filters.carbs.selected() && !sections.searchCriteria.filters.glucose.selected()) {	
-		lakes = filterOne.carbsOnly(readings, sections.searchCriteria.filters.carbs.value(), searchOptions.days, searchOptions.timeOfDayRange, carbPeriod);	
+	if(sections.searchCriteria.filters.carbs.selected() && !sections.searchCriteria.filters.glucose.selected()) {
+		lakes = filterOne.carbsOnly(readings, sections.searchCriteria.filters.carbs.value(), searchOptions.days, searchOptions.timeOfDayRange, carbPeriod);
 
 	} else if(!sections.searchCriteria.filters.carbs.selected() && sections.searchCriteria.filters.glucose.selected()) {
-		
-		lakes = filterOne.glucoseOnly(readings, sections.searchCriteria.filters.glucose.value(), glucoseOccurence, searchOptions.days, searchOptions.timeOfDayRange);	
+		console.log('glucose search only', searchOptions);
+		lakes = filterOne.glucoseOnly(readings, sections.searchCriteria.filters.glucose.value(), glucoseOccurence, searchOptions.days, searchOptions.timeOfDayRange);
 
 	} else if(sections.searchCriteria.filters.carbs.selected() && sections.searchCriteria.filters.glucose.selected()) {
 		var options = {
@@ -154,7 +154,7 @@ var search = function(readings, range, searchOnly) {
 			carbPeriod: carbPeriod
 		};
 
-		lakes = filterOne.carbsAndGlucose(readings, options);	
+		lakes = filterOne.carbsAndGlucose(readings, options);
 
 	//	console.log('carbsAndGlucose', lakes);
 
@@ -174,16 +174,17 @@ var search = function(readings, range, searchOnly) {
 	}
 
 	lakes.reverse();
-
-	lakes = _.uniq(lakes, function(l) {
+	console.log('lakes before uniq', lakes.length);
+	/*lakes = _.uniq(lakes, function(l) {
+		//console.log(l.start);
 		return l.start.id;
-	});
+	});*/
 
 	var count = 0;
 	var shown = 20;
 
 	drawTimeBind(lakes);
-
+  console.log('lakes', lakes.length);
 	console.log('search time: ', Date.now() - startTime);
 
 	if(searchOnly) {
@@ -201,11 +202,11 @@ var search = function(readings, range, searchOnly) {
 		}
 	});
 
-	//$('.pagging').show();
-	//$('.pagging_previous').unbind();
-	//$('.pagging_next').unbind();
-	//$('.pagging_previous').click(drawPage.previous);
-	//$('.pagging_next').click(drawPage.next);
+	$('.pagging').show();
+	$('.pagging_previous').unbind();
+	$('.pagging_next').unbind();
+	$('.pagging_previous').click(drawPage.previous);
+	$('.pagging_next').click(drawPage.next);
 
 	drawPage.page(0,20);
 
@@ -250,7 +251,7 @@ var timeBins = function(lakes) {
 			bins[i].value = groups[i].length;
 			continue;
 		}
-		
+
 		bins[i].value = 0;
 	}
 
@@ -430,12 +431,13 @@ var initSections = function() {
 		}
 	};
 };
-
+var jsPumpData;
 var careTeamlistItem = function(user) {
 	return function() {
-		console.log('click', user);
 		waiting();
-		fetchReadings(user.userid, loadSonarSearchInterface);
+
+		loadSonarSearchInterface(jsPumpData);
+		//fetchReadings(user.userid, loadSonarSearchInterface);
 
 		$('.navbar-patient-name').html(user.firstName + ' ' + user.lastName);
 	}
@@ -457,8 +459,8 @@ var start = function(teams) {
 		var member = teams.members[i];
 		var userli = $('<li class="people-list-item list-group-item js-person people-list-item-with-link"><a class="people-list-item-link list-group-item-link"><div class="people-list-item-name">Howard Look</div></a></li>');
 
-		userli.find('.people-list-item-name').html(member.firstName + ' ' + member.lastName);		
-		
+		userli.find('.people-list-item-name').html(member.firstName + ' ' + member.lastName);
+
 		userli.click(careTeamlistItem(member));
 
 		$('.js-patients-shared .people-list').append(userli);
@@ -488,7 +490,7 @@ var loadSonarSearchInterface = function(readings) {
 
 	$('.search_panel_sections_header').click(function() {
     if($(this).hasClass('arrow_opened')) {
-      closeSection(this);    
+      closeSection(this);
     } else {
   		openSection(this);
     }
@@ -583,7 +585,7 @@ var loadSonarSearchInterface = function(readings) {
   		$('.search_panel_sections_filter_save_label').show();
   	}   // esc
 	});
-	
+
 	$('.search_panel_sections_filter_save_label').click(function() {
 
 		$('.search_panel_sections_filter_save_input').show();
@@ -594,30 +596,91 @@ var loadSonarSearchInterface = function(readings) {
 
 	$('.search_panel_sections_filter_criteria_choices > ul > li').click(function() {
 		if( $(this).hasClass('choice_selected') ) {
-			$(this).removeClass('choice_selected');	
-			$(this).addClass('choice_notSelected');	
+			$(this).removeClass('choice_selected');
+			$(this).addClass('choice_notSelected');
 		} else {
-			$(this).addClass('choice_selected');	
-			$(this).removeClass('choice_notSelected');	
-		}	
+			$(this).addClass('choice_selected');
+			$(this).removeClass('choice_notSelected');
+		}
 	});
 
 	$('.search_panel_sections_filter_criteria_glucoseTrends_arrow > li').click(function() {
 		if( $(this).hasClass('choice_selected_trend') ) {
-			$(this).removeClass('choice_selected_trend');	
-			$(this).addClass('choice_notSelected_trend');	
+			$(this).removeClass('choice_selected_trend');
+			$(this).addClass('choice_notSelected_trend');
 		} else {
-			$(this).addClass('choice_selected_trend');	
-			$(this).removeClass('choice_notSelected_trend');	
-		}	
+			$(this).addClass('choice_selected_trend');
+			$(this).removeClass('choice_notSelected_trend');
+		}
 	});
 
 	$('.careteam').hide();
-	$('.main').show();	
+	$('.main').show();
 }
 
+var offlineTeams = {
+	user: {
+		firstName: 'Ian',
+		lastName: 'Jørgensen',
+		userid: 1
+	},
+	members: [
+		{
+			firstName: 'Brandon',
+			lastName: 'Arbiter',
+			userid: 1
+		}
+	]
+};
+
 $(function() {
-	$('.simple-form-submit').click(function() {
+
+	//"{\"value\":\"11.5\",\"smbg\":\"0\",\"carbs\":\"150\",\"carb_units\":\"grams\",\"carb_ratio\":\"13\",\"sensitivity\":\"50\",\"recommended\":\"11.5\",\"correction\":\"0\",\"food\":\"11.5\",\"joinKey\":\"18403c5252\",\"type\":\"wizard\",\"deviceTime\":\"2014-03-21T21:06:17\"}\n",
+
+	/*
+	"{\"value\":\"3.6\",\"smbg\":\"358\",\"carbs\":\"0\",\"carb_units\":\"grams\",\"carb_ratio\":\"12\",\"sensitivity\":\"65\",\"recommended\":\"3.6\",\"correction\":\"3.6\",\"food\":\"0\",\"joinKey\":\"4ee2ba4149\",\"type\":\"wizard\",\"deviceTime\":\"2013-11-29T00:13:37\"}\n",
+  "{\"value\":\"4.9\",\"bolus\":4.9,\"programmed\":4.9,\"type\":\"bolus\",\"subType\":\"normal\",\"deviceTime\":\"2013-11-29T00:13:37\",\"joinKey\":\"4ee2ba4149\"}\n",
+	*/
+	jsPumpData = pumpData.map(function(reading) {
+		reading = JSON.parse(reading);
+
+		//var even = _.find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+		reading.payload = {
+			foodEstimate: reading.food,
+			estimate: reading.recommended,
+			correctionEstimate: reading.correction,
+			bgInput: reading.smbg,
+			activeInsulin: 0,
+			carbRatio: reading.carb_ratio,
+			carbInput: parseInt(reading.carbs),
+			sensitivity: reading.sensitivity
+		};
+
+
+		return reading;
+	});
+
+	jsPumpData = jsPumpData.map(function(reading) {
+		if(reading.type == 'wizard') {
+			var val  = _.find(jsPumpData, function(r){ return r.type == 'bolus' && r.joinKey == reading.joinKey; });
+			//if(val)console.log(val.value, reading.value);
+			reading.value = val ? val.value : 0;
+		}
+		return reading;
+	});
+
+
+	$('.simple-form-submit').click(
+		function() {
+			data.loggedUser = {token: 213};
+			data.loggedUser.teams = offlineTeams;
+
+			start(offlineTeams);
+			return false;
+
+		}
+	);
+	/*$('.simple-form-submit').click(function() {
 		$('.simple-form-submit').html('Loging in...');
 		$.get('/login?username=' + $('#username').val() + '&password=' + $('#password').val(), function(user) {
 			data.loggedUser = user;
@@ -630,7 +693,7 @@ $(function() {
 	    	setTimeout(function() {
 	    		$('.simple-form-submit').html('Log in');
 	    	}, 4000);
-			}); 
+			});
 		}).fail(function() {
 			$('.simple-form-submit').html('Error logging in, try again...');
     	setTimeout(function() {
@@ -638,5 +701,5 @@ $(function() {
     	}, 4000);
 		});
 		return false;
-	});
+	});*/
 });

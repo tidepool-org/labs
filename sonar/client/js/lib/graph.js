@@ -49,11 +49,11 @@ var graph = function(id, d, options) {
 		if (reading.value < 80) {
 			return 'bolus_lowRange';
 		}
-		
+
 		if (reading.value > 180) {
 			return 'bolus_highRange';
 		}
-		
+
 		return 'bolus_normalRange';
 	};
 
@@ -148,9 +148,9 @@ var graph = function(id, d, options) {
 				.domain([0, 100])
 				.range([0, 20])
 				.clamp(true);
-			
+
 			//bolus
-			svg.selectAll()	
+			svg.selectAll()
 				.data(data)
 				.enter()
 				.append("rect")
@@ -160,13 +160,37 @@ var graph = function(id, d, options) {
 				.attr('title', function(reading) {
 					var s = '<div class="bolus_tip"><ul>';
 
+/*
+					"{\"value\":\"11.5\",
+					\"smbg\":\"0\",
+					\"carbs\":\"150\",
+					\"carb_units\":\"grams\",
+					\"carb_ratio\":\"13\",
+					\"sensitivity\":\"50\",
+					\"recommended\":\"11.5\",
+					\"correction\":\"0\",
+					\"food\":\"11.5\",
+					\"joinKey\":\"18403c5252\",
+					\"type\":\"wizard\",
+					\"deviceTime\":\"2014-03-21T21:06:17\"}\n",
+
+					"{\"value\":\"5.7\",
+					\"bolus\":5.7,
+					\"programmed\":5.7,
+					\"type\":\"bolus\",
+					\"subType\":\"dual/normal\",
+					\"deviceTime\":\"2014-03-21T21:06:18\",
+					\"joinKey\":\"18403c5252\"}\n",*/
+
+
 					if(reading.payload.estimate) s += '<li>Value: '+ reading.payload.estimate +'</li>';
 					if(reading.payload.correctionEstimate) s += '<li>Correction Estimate: '+ reading.payload.correctionEstimate +'</li>';
 					if(reading.payload.foodEstimate) s += '<li>Food Estimate: '+ reading.payload.foodEstimate +'</li>';
 					if(reading.payload.bgInput) s += '<li>SMBG Input: '+ reading.payload.bgInput +'</li>';
 					if(reading.payload.activeInsulin) s += '<li>Active Insulin: '+ reading.payload.activeInsulin +'</li>';
-					if(reading.payload.foodEstimate) s += '<li>Carb Ratio: '+ reading.payload.carbRatio +'</li>';
-					if(reading.payload.correctionEstimate) s += '<li>Insulin Sensitivity: '+ reading.payload.insulinSensitivity +'</li>';
+					if(reading.payload.carbInput) s += '<li>Carb Ratio: '+ reading.payload.carbInput +'</li>';
+					if(reading.payload.carbRatio) s += '<li>Carb Ratio: '+ reading.payload.carbRatio +'</li>';
+					if(reading.payload.insulinSensitivity) s += '<li>Insulin Sensitivity: '+ reading.payload.insulinSensitivity +'</li>';
 					s += '</ul></div>';
 
 					return s;
@@ -175,7 +199,7 @@ var graph = function(id, d, options) {
 				.attr('width', 10)
 				.attr('attr', function(reading) {
 					var length = yScale(reading.payload.estimate);
-					
+
 					$(this).attr("height", length);
 					$(this).attr("y", options.height - length);
 				});
@@ -184,7 +208,7 @@ var graph = function(id, d, options) {
 				var reading = data[i];
 				var x = xScale(reading.date);
 				var y = options.height - yScale(reading.payload.estimate) - 12;
-				
+
 				//carb text
 				svg.append('text')
 	        .attr('class', 'bolus_label')
@@ -193,7 +217,7 @@ var graph = function(id, d, options) {
 	        .text(reading.payload.estimate+'u');
 	    }*/
 			//correciton bolus
-			/*svg.selectAll()	
+			/*svg.selectAll()
 				.data(data)
 				.enter()
 				.append("rect")
@@ -203,7 +227,7 @@ var graph = function(id, d, options) {
 				.attr('class', 'graph-bolus-correction')
 				.attr('attr', function(reading) {
 					var length = yScale(reading.correction);
-					
+
 					$(this).attr("height", length);
 					$(this).attr("y", options.height - length);
 				});*/
@@ -214,13 +238,13 @@ var graph = function(id, d, options) {
 				var x = xScale(reading.date);
 				var y = options.height - yScale(reading.payload.estimate);
 				var carbCircleR = 15;//xCarbScale(reading.carbs);
-				
+
 				if(reading.payload.carbInput == 0) {
 					continue;
 				}
 
 				//carb text
-				
+
 	      //carb circle
 	      svg.append("circle")
 	      	.attr('cx', x + carbCircleR/2)
@@ -232,11 +256,11 @@ var graph = function(id, d, options) {
 	        .attr('class', 'bolus_carbs_label')
 	        .attr('x', x + 1)
 	        .attr('y', y - 12)
-	        .text(reading.payload.carbInput);	
+	        .text(reading.payload.carbInput);
 			}
 		}
 	}
-	
+
 	var readings = _.filter(data.readings, function(reading) {
 		return reading.time > xScale.domain()[0] && reading.time < xScale.domain()[1];
 	});

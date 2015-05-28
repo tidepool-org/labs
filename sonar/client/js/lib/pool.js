@@ -23,9 +23,9 @@ var normalizeBlip = function(readings) {
 var normalize = function(readings) {
 	var previous = readings[0].value;
 
-	Date.prototype.addHours = function(h) {    
-   this.setTime(this.getTime() + (h*60*60*1000)); 
-   return this;   
+	Date.prototype.addHours = function(h) {
+   this.setTime(this.getTime() + (h*60*60*1000));
+   return this;
 	}
 
 	readings.map(function(reading, i) {
@@ -92,7 +92,7 @@ var basicFilter = {
 			} else {
 				hits = 0;
 			}
-
+			console.log('hits', hits);
 			if(hits == occurence) {
 				return true;
 			}
@@ -130,7 +130,7 @@ var filterOne = {
 						first = reading;
 						start = i;
 					}
-					
+
 					hits++;
 
 					if(days && !_.contains(days, reading.date.getDay())) {
@@ -149,7 +149,7 @@ var filterOne = {
 							var _reading = readings[j];
 
 							pool.push(_reading);
-							
+
 							if(_reading.time - first.time > 1000*60*60*6) {
 								pools.push({
 									start: first,
@@ -200,7 +200,7 @@ var filterOne = {
 
 				for(var j = i; j < readings.length; j++) {
 					var reading = readings[j];
-					
+
 					pool.push(reading);
 
 					if(reading.time - first.time > 1000*60*60*6) {
@@ -217,7 +217,7 @@ var filterOne = {
 
 			if (reading.type == 'wizard') {
 				if(days && !_.contains(days, reading.date.getDay())) {
-					continue;	
+					continue;
 				}
 
 				if(timeOfDayRange && !(reading.dayTime > timeOfDayRange[0] &&  reading.dayTime < timeOfDayRange[1])) {
@@ -302,7 +302,7 @@ var filterOne = {
 
 			if(makePool) {
 				if(days && !_.contains(days, reading.date.getDay())) {
-					continue;	
+					continue;
 				}
 				if(timeOfDayRange && !(reading.dayTime > timeOfDayRange[0] &&  reading.dayTime < timeOfDayRange[1])) {
 					continue;
@@ -314,7 +314,7 @@ var filterOne = {
 
 				for(var j = i; j < readings.length; j++) {
 					var reading = readings[j];
-					
+
 					pool.push(reading);
 
 					if(reading.time - first.time > 1000*60*60*6) {
