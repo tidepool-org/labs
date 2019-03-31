@@ -22,7 +22,7 @@ var express = require('express'),
 var port = process.env.PORT || 8081;
 var jf = require('jsonfile')
 var host = 'https://staging-api.tidepool.io/';
-var usr = {username:'howard@lookfamily.org', password:'2seed8a'};
+var usr = {username:'user@somefamily.org', password:'XXXXXXXX'};
 var client = require('./lib/platform-client.js')(host);
 var common = require('common');
 
