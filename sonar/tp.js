@@ -15,7 +15,7 @@ not, you can obtain one from Tidepool Project at tidepool.org.
 == BSD2 LICENSE ==
 */
 var host = 'https://staging-api.tidepool.io/';
-var usr = {username:'howard@lookfamily.org', password:'2seed8a'};
+var usr = {username:'user@somefamily.org', password:'XXXXXXX'};
 var client = require('./lib/platform-client')(host);
 
 client.login(usr, function(err, loggedUser) {
